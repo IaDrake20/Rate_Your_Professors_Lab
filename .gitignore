@@ -147,6 +147,13 @@ coverage*.json
 coverage*.xml
 coverage*.info
 
+
+# Added files
+*.suo
+*.v2
+*.v6.1
+*.vsidx
+
 # Visual Studio code coverage results
 *.coverage
 *.coveragexml
