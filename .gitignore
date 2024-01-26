@@ -149,6 +149,7 @@ coverage*.info
 
 
 # Added files
+*.dtbcache
 *.suo
 *.v2
 *.v6.1
