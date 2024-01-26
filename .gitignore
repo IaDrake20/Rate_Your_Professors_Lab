@@ -154,6 +154,7 @@ coverage*.info
 *.v2
 *.v6.1
 *.vsidx
+*.DS_Store
 
 # Visual Studio code coverage results
 *.coverage
