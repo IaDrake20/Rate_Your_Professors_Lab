@@ -32,7 +32,11 @@ namespace RateMyProfessor
 					Console.WriteLine(i+". " + internallisting[i]);
 					}
 		}
-		
+		public void setProfName(int pos, String newname)
+		{
+			internallisting[pos]=newname;
+		}
+
 		public Guid getId()
 		{
 			return id;
