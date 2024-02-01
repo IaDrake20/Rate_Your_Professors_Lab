@@ -9,7 +9,7 @@ namespace RateMyProfessor
 
 		List<Rating> ratings;
 
-		static String[] internallisting=new String[200];
+		public static String[] internallisting=new String[200];
 
 		public Professor(String n)
 		{
@@ -22,10 +22,17 @@ namespace RateMyProfessor
 				{
 				if (internallisting[i].Equals(null))
 					internallisting[i] = name;
+				Console.WriteLine(name + " is entry number " + i);
 				}
 		}
-
-
+		public void printProfArray()
+		{
+			for (int i = 1; i < internallisting.Length; i++) {
+				if (!internallisting[i].Equals(""))
+					Console.WriteLine(i+". " + internallisting[i]);
+					}
+		}
+		
 		public Guid getId()
 		{
 			return id;
@@ -48,7 +55,7 @@ namespace RateMyProfessor
 		   
         }
 
-        public int getProfessorpos(String name)
+        public int getProfpos(String name)
 		{
 			int pos = 0;
 			int i = 1;
@@ -58,11 +65,12 @@ namespace RateMyProfessor
 				if (i != internallisting.Length)
 					pos = i;
 				else
-					i = 1;
+					pos = -1;
+			//If pos ==-1 print not found or something
 			return pos;
 		}
-		public void deleteProfessorpos(int pos)
-		{
+		public void deleteProfpos(int pos)
+		{//internal class
 			for (int i = pos; i < internallisting.Length; i++)
 			{
 
@@ -78,8 +86,9 @@ namespace RateMyProfessor
         }
 		public void deleteProf()
 		{
-            int p=getProfessorpos(name);
-			deleteProfessorpos(p);
+            int p=getProfpos(name);
+			if (p != -1)
+				deleteProfpos(p);
             name = "";
 			id = Guid.Empty;
 			ratings = new List<Rating>(); 
