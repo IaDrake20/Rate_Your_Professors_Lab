@@ -2,7 +2,7 @@
 using System;
 namespace RateMyProfessor
 {
-	public class Rating
+	public class Ratings
 	{
 		Guid ratingId;
 
