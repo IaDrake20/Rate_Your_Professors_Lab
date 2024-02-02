@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using Xunit.Sdk;
+using Xunit.Abstractions;
+using Xunit.Extensions;
 namespace RateMyProfessor
 {
 	public class Professor
 	{
-		String name;
+		public String name;
 
-		Guid id;
+		public Guid id;
 
-		List<Rating> ratings;
+		public List<Rating> ratings;
 
 		public static String[] internallisting=new String[200];
 
@@ -171,5 +175,128 @@ namespace RateMyProfessor
 
     }
 
+    public class ProfessorTests
+    {
+        private readonly ITestOutputHelper output;
+        public ProfessorTests(ITestOutputHelper output)
+        {
+            this.output = output;
+        }
+        [Fact]
+        public void Professor_Constructor_SetsNameAndId()
+        {
+
+            string professorName = "John Doe";
+
+
+            Professor professor = new Professor(professorName);
+
+
+            Assert.Equal(professorName, professor.name);
+            Assert.NotEqual(Guid.Empty, professor.getId());
+        }
+
+        /*[Fact]
+        public void Professor_AddProfRating_AddsRatingToList()
+        {
+
+            Professor professor = new Professor("John Doe");
+            Rating rating = new Rating(5, "Great professor!");
+
+
+            professor.addProfRating(rating);
+
+
+            Assert.Contains(rating, professor.ratings);
+        }*/
+
+        /*  [Fact]
+      public void Professor_DeleteProfRating_RemovesRatingFromList()
+        {
+
+            Professor professor = new Professor("John Doe");
+            Rating rating = new Rating(4, "Good professor!");
+            professor.addProfRating(rating);
+
+
+            professor.deleteProfRating(rating);
+
+
+            Assert.DoesNotContain(rating, professor.ratings);
+        }*/
+
+        [Fact]
+        public void Professor_DeleteProf_DeletesProfessor()
+        {
+
+            string professorName = "John Doe";
+            Professor professor = new Professor(professorName);
+
+
+            professor.deleteProf();
+
+
+            Assert.Equal(Guid.Empty, professor.getId());
+            Assert.Equal("", professor.name);
+            Assert.Empty(professor.ratings);
+        }
+
+        [Fact]
+        public void Professor_PrintProfArray_PrintsNonEmptyNames()
+        {
+            // Arrange
+            Professor professor1 = new Professor("John Doe");
+            Professor professor2 = new Professor("Jane Smith");
+
+            // Act
+            professor1.printProfArray();
+
+            // Assert
+            string outputString = output.ToString();
+            Assert.Contains("1. John Doe", outputString);
+            Assert.Contains("2. Jane Smith", outputString);
+        }
+
+        [Fact]
+        public void Professor_SetProfName_SetsNameAtIndex()
+        {
+
+            Professor professor = new Professor("John Doe");
+
+
+            professor.setProfName(1, "Updated Name");
+
+
+            Assert.Equal("Updated Name", Professor.internallisting[1]);
+        }
+
+        [Fact]
+        public void Professor_DeleteProfpos_DeletesNameAtIndex()
+        {
+
+            Professor professor1 = new Professor("John Doe");
+            Professor professor2 = new Professor("Jane Smith");
+
+
+            professor1.deleteProfpos(1);
+
+
+            Assert.Equal("Jane Smith", Professor.internallisting[1]);
+        }
+
+        [Fact]
+        public void Professor_GetProfpos_ReturnsCorrectPosition()
+        {
+
+            Professor professor1 = new Professor("John Doe");
+            Professor professor2 = new Professor("Jane Smith");
+
+
+            int position = professor1.getProfpos("Jane Smith");
+
+
+            Assert.Equal(2, position);
+        }
+    }
 }
 
