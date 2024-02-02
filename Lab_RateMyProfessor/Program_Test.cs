@@ -26,14 +26,18 @@ namespace Lab_RateMyProfessor
         }
 
         [Fact]
-        public void IsValidRating_ValidRating_ReturnsTrue()
+        public void ValidProfRating()
         {
             var prog = new Program();
 
-            var result = prog.RecieveProfName();
+            var result = prog.RecieveProfRating();
+            int rating = Int32.Parse(result.ToString());
 
-            // Assert
-            Assert.True(result);
+            // Assert rating is number
+            Assert.True(result.All(char.IsNumber));
+
+            //check that rating is within range
+            Assert.True( rating <= 10 && rating >= 0);
         }
     }
 }

@@ -9,6 +9,12 @@ namespace RateMyProfessor
 
 		List<Rating> ratings;
 
+		public Professor()
+		{
+			name = "";
+			id = Guid.NewGuid();
+			ratings = new List<Rating>();
+		}
 
 		public Professor(String n)
 		{
@@ -25,8 +31,13 @@ namespace RateMyProfessor
 			return id;
 		}
 
+        public string RecieveProfName()
+        {
+            Console.WriteLine("Please enter a professor's name: ");
+            string p_input = Console.ReadLine();
+            return p_input;
+        }
 
-
-	}
+    }
 }
 
