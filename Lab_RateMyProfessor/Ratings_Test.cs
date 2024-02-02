@@ -15,7 +15,7 @@ namespace Lab_RateMyProfessor
         {
             var rateings = new Ratings();
 
-            var result = prog.RecieveProfRating();
+            var result = rateings.RecieveProfRating();
             int rating = Int32.Parse(result.ToString());
 
             // Assert rating is number

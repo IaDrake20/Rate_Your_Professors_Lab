@@ -7,13 +7,13 @@ namespace RateMyProfessor
 
 		Guid id;
 
-		List<Rating> ratings;
+		List<Ratings> ratings;
 
 		public Professor()
 		{
 			name = "";
 			id = Guid.NewGuid();
-			ratings = new List<Rating>();
+			ratings = new List<Ratings>();
 		}
 
 		public Professor(String n)
@@ -22,7 +22,7 @@ namespace RateMyProfessor
 
 			id = Guid.NewGuid();
 
-			ratings = new List<Rating>();
+			ratings = new List<Ratings>();
 		}
 
 

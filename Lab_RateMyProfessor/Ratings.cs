@@ -12,7 +12,7 @@ namespace RateMyProfessor
 
 		int ratingValue; //1-10
 
-		public Rating()
+		public Ratings()
 		{
 			ratingId = Guid.NewGuid();
 			professorId = Guid.NewGuid();
@@ -20,7 +20,7 @@ namespace RateMyProfessor
 			ratingValue = 0;
 		}
 
-		public Rating(Guid pId, Guid catId, int value )
+		public Ratings(Guid pId, Guid catId, int value )
 		{
 			ratingId = Guid.NewGuid();
 
