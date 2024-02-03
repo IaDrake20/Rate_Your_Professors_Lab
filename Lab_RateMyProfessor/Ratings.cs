@@ -4,13 +4,13 @@ namespace RateMyProfessor
 {
 	public class Ratings
 	{
-		Guid ratingId;
+		public Guid ratingId;
 
-		Guid professorId;
+		public Guid professorId;
 
-		Guid categoryId;
+		public Guid categoryId;
 
-		int ratingValue; //1-10
+		public int ratingValue; //1-10
 
 		public Ratings()
 		{
@@ -38,6 +38,11 @@ namespace RateMyProfessor
             string r_input = Console.ReadLine();
             return r_input;
         }
+
+		public Guid getId()
+		{
+			return ratingId;
+		}
     }
 }
 

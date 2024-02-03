@@ -3,11 +3,11 @@ namespace RateMyProfessor
 {
 	public class Professor
 	{
-		String name;
+        public String name;
 
-		Guid id;
+		public Guid id;
 
-		List<Ratings> ratings;
+        public List<Ratings> ratings;
 
 		public Professor()
 		{
@@ -37,6 +37,11 @@ namespace RateMyProfessor
             string p_input = Console.ReadLine();
             return p_input;
         }
+
+		public void addRating(Ratings rat)
+		{
+			ratings.Add(rat);	
+		}
 
     }
 }

@@ -3,11 +3,11 @@ namespace RateMyProfessor
 {
     public class Category
     {
-        string categoryName;
+        public string categoryName;
 
-        Guid categoryId;
+        public Guid categoryId;
 
-        string description;
+        public string description;
 
         public Category(string n , string descr)
         {
@@ -16,6 +16,21 @@ namespace RateMyProfessor
             description = descr;
 
             categoryId = Guid.NewGuid();
+        }
+
+        public string getName()
+        {
+            return categoryName;
+        }
+
+        public Guid getCategoryId()
+        {
+            return categoryId;
+        }
+
+        public string getDescription()
+        {
+            return description;
         }
     }
 }
