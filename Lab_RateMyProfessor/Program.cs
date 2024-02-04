@@ -1,5 +1,6 @@
 ﻿using Lab_RateMyProfessor;
 using System;
+using Xunit;
 
 namespace RateMyProfessor
 {
@@ -21,6 +22,7 @@ namespace RateMyProfessor
 
 
             //quick tests for file manager
+            
             Professor bilitski = new Professor("bilitski");
             Category bestDressed = new Category("Best Dressed" , "Who dresses the best");
             Ratings rat = new Ratings(bilitski.getId() , bestDressed.getCategoryId(), 10);

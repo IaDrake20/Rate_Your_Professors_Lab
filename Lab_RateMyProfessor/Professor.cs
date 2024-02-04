@@ -33,6 +33,7 @@ namespace RateMyProfessor
 
         public string RecieveProfName()
         {
+
             Console.WriteLine("Please enter a professor's name: ");
             string p_input = Console.ReadLine();
             return p_input;
@@ -41,8 +42,7 @@ namespace RateMyProfessor
 		public void addRating(Ratings rat)
 		{
 			ratings.Add(rat);	
-		}
-       
+		}      
 }
 }
 

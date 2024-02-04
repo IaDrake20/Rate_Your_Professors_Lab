@@ -14,35 +14,43 @@ namespace Lab_RateMyProfessor
     {
         public static void addCategory(Category cat)
         {
-            string path = "categories.json";
-
-            try
+            //IAN: if it returns true that the category exists then don't add anything
+            // if else then add the category
+            if (!AssertExistance(cat.categoryName, 'c'))
             {
-                string existingJson = File.ReadAllText(path);
+                Console.WriteLine("ERROR: Category already exists");
+            } else
+            {
+                string path = "categories.json";
 
-                List<Category> existingCategories;
-
-                if (!string.IsNullOrWhiteSpace(existingJson))
+                try
                 {
-                    existingCategories = JsonConvert.DeserializeObject<List<Category>>(existingJson);
+                    string existingJson = File.ReadAllText(path);
+
+                    List<Category> existingCategories;
+
+                    if (!string.IsNullOrWhiteSpace(existingJson))
+                    {
+                        existingCategories = JsonConvert.DeserializeObject<List<Category>>(existingJson);
+                    }
+                    else
+                    {
+                        existingCategories = new List<Category>();
+                    }
+
+                    existingCategories.Add(cat);
+
+                    string updatedJson = JsonConvert.SerializeObject(existingCategories, Formatting.Indented);
+                    File.WriteAllText(path, updatedJson);
                 }
-                else
+                catch (JsonSerializationException ex)
                 {
-                    existingCategories = new List<Category>();
+                    Console.WriteLine($"Error during JSON serialization/deserialization: {ex.Message}");
                 }
-
-                existingCategories.Add(cat);
-
-                string updatedJson = JsonConvert.SerializeObject(existingCategories, Formatting.Indented);
-                File.WriteAllText(path, updatedJson);
-            }
-            catch (JsonSerializationException ex)
-            {
-                Console.WriteLine($"Error during JSON serialization/deserialization: {ex.Message}");
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine($"Error reading/writing the file: {ex.Message}");
+                catch (IOException ex)
+                {
+                    Console.WriteLine($"Error reading/writing the file: {ex.Message}");
+                }
             }
         }
 
@@ -82,35 +90,42 @@ namespace Lab_RateMyProfessor
 
         public static void addProfessor(Professor pro)
         {
-            string path = "professors.json";
 
-            try
+            if(AssertExistance(pro.name, 'p'))
             {
-                string existingJson = File.ReadAllText(path);
+                Console.WriteLine("ERROR: The professor you tried to add already exists");
+            } else
+            {
+                string path = "professors.json";
 
-                List<Professor> existingProfessors;
-
-                if (!string.IsNullOrWhiteSpace(existingJson))
+                try
                 {
-                    existingProfessors = JsonConvert.DeserializeObject<List<Professor>>(existingJson);
+                    string existingJson = File.ReadAllText(path);
+
+                    List<Professor> existingProfessors;
+
+                    if (!string.IsNullOrWhiteSpace(existingJson))
+                    {
+                        existingProfessors = JsonConvert.DeserializeObject<List<Professor>>(existingJson);
+                    }
+                    else
+                    {
+                        existingProfessors = new List<Professor>();
+                    }
+
+                    existingProfessors.Add(pro);
+
+                    string updatedJson = JsonConvert.SerializeObject(existingProfessors, Formatting.Indented);
+                    File.WriteAllText(path, updatedJson);
                 }
-                else
+                catch (JsonSerializationException ex)
                 {
-                    existingProfessors = new List<Professor>();
+                    Console.WriteLine($"Error during JSON serialization/deserialization: {ex.Message}");
                 }
-
-                existingProfessors.Add(pro);
-
-                string updatedJson = JsonConvert.SerializeObject(existingProfessors, Formatting.Indented);
-                File.WriteAllText(path, updatedJson);
-            }
-            catch (JsonSerializationException ex)
-            {
-                Console.WriteLine($"Error during JSON serialization/deserialization: {ex.Message}");
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine($"Error reading/writing the file: {ex.Message}");
+                catch (IOException ex)
+                {
+                    Console.WriteLine($"Error reading/writing the file: {ex.Message}");
+                }
             }
         }
 
@@ -284,5 +299,44 @@ namespace Lab_RateMyProfessor
             }
         }
 
+        //helper methods to stop dulicates
+        //IAN: we don't care if there are duplicate ratings
+        private static bool AssertExistance(string content, char type)
+        {
+            File_Manager _fm = new File_Manager();
+            switch (type)
+            {
+                case 'c':
+                    List<Category> c_list = _fm.getCategories();
+
+                    foreach (Category _category in c_list)
+                    {
+                        if (_category.categoryName.Equals(content))
+                        {
+                            Console.WriteLine("Category already exists");
+                            return false;
+                        }
+                    }
+                    break;
+                case 'p':
+                    List<Professor> p_list = _fm.getProfessors();
+
+                    foreach (Professor _prof in p_list)
+                    {
+                        if (_prof.name.Equals(content))
+                        {
+                            Console.WriteLine("Professor already exists");
+                            return false;
+                        }
+                    }
+                    break;
+            }
+            
+            return true;
+        }
+
     }
+
+
+
 }
