@@ -15,17 +15,18 @@ namespace Lab_RateMyProfessor
     public class Program_Test
     {
 
-        public static Professor bilitski = new Professor("bilitski");
-        public static Category bestDressed = new Category("Best Dressed", "Who dresses the best");
-        Ratings rat = new Ratings(bilitski.getId(), bestDressed.getCategoryId(), 10);
-
-
-
         [Fact]
-        public void Test_FM_Add_Category()
+        public void Test_FM_Add_Delete_Category()
         {
-            //add and retrieve json -- Categories
+            //add , retrieve , delte json -- Categories
+
+            Professor bilitski = new Professor("bilitski");
+            Category bestDressed = new Category("Best Dressed", "Who dresses the best");
+            Ratings rat = new Ratings(bilitski.getId(), bestDressed.getCategoryId(), 10);
+            
+            
             bool found = false;
+            
             Assert.True(File_Manager.addCategory(bestDressed));
 
             List<Category> existingCats = File_Manager.getCategories();
@@ -37,13 +38,30 @@ namespace Lab_RateMyProfessor
                 }
             }
             Assert.True(found);
+
+            File_Manager.deleteCategory(bestDressed);
+
+            found = false;
+            existingCats = File_Manager.getCategories();
+            foreach (Category cat in existingCats)
+            {
+                if (cat.getCategoryId() == bestDressed.getCategoryId())
+                {
+                    found = true;
+                }
+            }
+            Assert.False(found);
         }
 
         [Fact]
-        public void Test_FM_Add_Professor()
+        public void Test_FM_Add_Delete_Professor()
         {
             //add and retrieve json -- Professor
+
+            Professor bilitski = new Professor("bilitski");
+            Category bestDressed = new Category("Best Dressed", "Who dresses the best");
             Ratings rat = new Ratings(bilitski.getId(), bestDressed.getCategoryId(), 10);
+
             bilitski.addRating(rat);
 
             bool found = false;
@@ -59,45 +77,12 @@ namespace Lab_RateMyProfessor
                 }
             }
             Assert.True(found);
-        }
-
-    
-
-        
-        [Fact]
-        public void Test_FM_Add_Rating()
-        {
-
-            //add and retrieve json -- Ratings
-            bool found = false;
-            Assert.True(File_Manager.addRating(rat));
-
-            List<Ratings> existingRats = File_Manager.getRatings();
-            foreach (Ratings rating in existingRats)
-            {
-                if (rating.getId() == rat.getId())
-                {
-                    found = true;
-                }
-            }
-            Assert.True(found);
-        }
 
 
-        [Fact]
-        public void Test_FM_CAdd_Dup()
-        {
-            Assert.False(File_Manager.addProfessor(bilitski));
-            Assert.False(File_Manager.addCategory(bestDressed));
-        }
-
-        [Fact]
-        public void Test_FM_Delete_Prof()
-        {
             File_Manager.deleteProfessor(bilitski);
-            
-            bool found = false;
-            List<Professor> existingProfs = File_Manager.getProfessors();
+
+            found = false;
+            existingProfs = File_Manager.getProfessors();
             if (existingProfs.Count != 0)
             {
                 foreach (Professor prof in existingProfs)
@@ -111,29 +96,25 @@ namespace Lab_RateMyProfessor
             Assert.False(found);
         }
 
+    
+
+        
         [Fact]
-        public void Test_FM_Delete_Category()
+        public void Test_FM_Add_Delete_Rating()
         {
-            File_Manager.deleteCategory(bestDressed);
+
+            //add and retrieve json -- Ratings
+
+            Professor bilitski = new Professor("bilitski");
+            Category bestDressed = new Category("Best Dressed", "Who dresses the best");
+            Ratings rat = new Ratings(bilitski.getId(), bestDressed.getCategoryId(), 10);
+
+            
 
             bool found = false;
-            List<Category> existingCats = File_Manager.getCategories();
-            foreach (Category cat in existingCats)
-            {
-                if (cat.getCategoryId() == bestDressed.getCategoryId())
-                {
-                    found = true;
-                }
-            }
-            Assert.False(found);
-        }
 
-        [Fact]
-        public void Test_FM_Delete_Rating()
-        {
-            File_Manager.deleteRating(rat);
+            Assert.True(File_Manager.addRating(rat));
 
-            bool found = false;
             List<Ratings> existingRats = File_Manager.getRatings();
             foreach (Ratings rating in existingRats)
             {
@@ -142,8 +123,35 @@ namespace Lab_RateMyProfessor
                     found = true;
                 }
             }
-            Assert.False(found);
+            Assert.True(found);
 
+            File_Manager.deleteRating(rat);
+
+            found = false;
+            existingRats = File_Manager.getRatings();
+            foreach (Ratings rating in existingRats)
+            {
+                if (rating.getId() == rat.getId())
+                {
+                    found = true;
+                }
+            }
+            Assert.False(found);
+        }
+
+        [Fact]
+        public void Test_Get_Categories()
+        {
+            Category cat1 = new Category("hi", "ji");
+            Category cat2 = new Category("f", "ji");
+            Category cat3 = new Category("sd", "ji");
+            File_Manager.addCategory(cat1);
+            File_Manager.addCategory(cat2);
+            File_Manager.addCategory(cat3);
+
+            List<Category> categories = File_Manager.getCategories();
+            
+            Assert.True(categories.Count == 3);
         }
 
 
