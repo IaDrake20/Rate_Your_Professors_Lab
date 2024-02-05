@@ -197,71 +197,61 @@ namespace RateMyProfessor
                         }
                         break;
                     case "-editRating":
-                        Professor prof22 = new Professor();
-                        Category cat22 = new Category();
-                        Console.WriteLine("Please enter the Guid of the professor to change the Rating to");
-                        _guid = Console.ReadLine();
+                    
+                        Console.WriteLine("Please enter the Guid of the professor to change the Rating for");
+                        string profGuid = Console.ReadLine();
 
                         List<Professor> _professors22 = File_Manager.getProfessors();
-                        foreach (Professor p22 in _professors22)
+                        Professor prof22 = _professors22.FirstOrDefault(p => p.id.ToString().Equals(profGuid));
+
+                        if (prof22 != null)
                         {
-                            if (p22.id.ToString().Equals(_guid))
+                            Console.WriteLine("Please enter the category to change the Rating for.");
+                            string catGuid = Console.ReadLine();
+
+                            List<Category> cate22 = File_Manager.getCategories();
+                            Category cat22 = cate22.FirstOrDefault(c => c.categoryId.ToString().Equals(catGuid));
+
+                            if (cat22 != null)
                             {
-                                // Console.WriteLine("Comparing " + p22.id + " to " + _guid);
-                                prof22 = p22;
-                                Console.WriteLine("Please enter the category to change the Rating to.");
-                                _guid = Console.ReadLine();
-                                List<Category> cate22 = File_Manager.getCategories();
-                                foreach (Category c22 in cate22)
+                                Console.WriteLine("Please enter the guid of the rating to change.");
+                                string ratingGuid = Console.ReadLine();
+
+                                Ratings ratingToEdit = prof22.ratings.FirstOrDefault(r => r.ratingId.ToString().Equals(ratingGuid));
+
+                                if (ratingToEdit != null)
                                 {
-                                    if (c22.categoryId.ToString().Equals(_guid))
-                                    {
-                                        cat22 = c22;
+                                    Console.WriteLine("Please enter the new rating.");
+                                    string newRating = Console.ReadLine();
 
-                                        Console.WriteLine("Please enter the guid of the rating to change.");
-                                        string ratid = Console.ReadLine();
-                                        List<Ratings>ratatat= prof22.getRat();
-                                        foreach (Ratings r22 in ratatat)
-                                        {
-                                            if (r22.categoryId.ToString().Equals(ratid))
-                                            {
-                                                Console.WriteLine("Please enter the new rating.");
-                                                string newrat = Console.ReadLine();
-                                                _rating = new Ratings(prof22.getId(), cat22.getCategoryId(), Int32.Parse(newrat));
-                                                while (_rating.ratingValue < 1 || _rating.ratingValue > 10)
-                                                {
-                                                    Console.WriteLine("Please enter the new rating.");
-                                                    newrat = Console.ReadLine();
-                                                    _rating = new Ratings(prof22.getId(), cat22.getCategoryId(), Int32.Parse(newrat));
-
-                                                }
-                                                File_Manager.addRating(_rating);
-                                            }
-                                            else
-                                            {
-                                                Console.WriteLine("ERROR: rating not found. Check your Guid");
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    else
+                                    int newRatingValue;
+                                    int.TryParse(newRating, out newRatingValue);
+                                    while ( newRatingValue < 1 || newRatingValue > 10)
                                     {
-                                        Console.WriteLine("ERROR: category not found. Check your Guid");
-                                        break;
+                                        Console.WriteLine("ERROR: Invalid rating. Please enter a number between 1 and 10.");
+                                        newRating = Console.ReadLine();
+                                        int.TryParse(newRating, out newRatingValue);
                                     }
+                                    ratingToEdit.setRatingValue(newRatingValue);
+                                    File_Manager.addRating(ratingToEdit);
+
                                 }
-
+                                else
+                                {
+                                    Console.WriteLine("ERROR: Rating not found. Check your Guid.");
+                                }
                             }
                             else
                             {
-                                Console.WriteLine("ERROR: professor not found. Check your Guid");
-                                break;
+                                Console.WriteLine("ERROR: Category not found. Check your Guid.");
                             }
                         }
-
+                        else
+                        {
+                            Console.WriteLine("ERROR: Professor not found. Check your Guid.");
+                        }
                         break;
 
-                        break;
                     case "-rmProf":
                         Console.WriteLine("Please enter the Guid of the professor to remove");
                         _guid = Console.ReadLine();
