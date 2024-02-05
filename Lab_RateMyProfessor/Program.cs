@@ -62,8 +62,7 @@ namespace RateMyProfessor
 
                         Console.WriteLine("Please enter a rating for the professor.");
                         string prof_rating = Console.ReadLine();
-                        Ratings _rating = new Ratings(_prof.getId(), _category.getCategoryId(), Int32.Parse(prof_rating));
-                        _prof.addRating(_rating);
+                        
 
                         try
                         {
@@ -75,6 +74,7 @@ namespace RateMyProfessor
                         }
 
                         Ratings _rating = new Ratings(_prof.getId(), _category.getCategoryId(), Int32.Parse(prof_rating));
+                        _prof.addRating(_rating);
                         File_Manager.addRating(_rating);
                         break;
                     case "-addProf":

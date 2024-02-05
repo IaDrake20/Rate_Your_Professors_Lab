@@ -1,17 +1,7 @@
 [
   {
-    "categoryName": "hockey",
-    "categoryId": "52b71d2b-bb53-4582-aa39-3cc8c35b18e7",
-    "description": "ice skate man"
-  },
-  {
-    "categoryName": "34",
-    "categoryId": "ae3e01e4-f97f-4b50-a4e5-d2afee08d34f",
-    "description": "4"
-  },
-  {
-    "categoryName": "Sports",
-    "categoryId": "5e10d4f9-2aeb-43ce-a54c-d290a741fcb9",
-    "description": ""
+    "categoryName": "sports",
+    "categoryId": "ba4e20ce-5213-4678-be05-f009ff71d8fb",
+    "description": "hockey"
   }
 ]
