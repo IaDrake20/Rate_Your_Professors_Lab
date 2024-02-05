@@ -85,18 +85,18 @@ namespace Lab_RateMyProfessor
             {
                 using (var consoleOutput = new ConsoleOutput())
                 {
-                    // Arrange
+                 
                     Professor professor = new Professor();
 
                     // Simulate user input for the Main method
                     string[] userInputs = { "-addProf", "John Doe", "-viewProf", "E" };
 
-                    // Act
+                    
                     SimulateUserInput(userInputs);
                     //This needs a proper main reference so that the test runs main
                     //Lab_RateMyProfessor.Program.Main(null);
 
-                    // Assert
+                   
                     string output = consoleOutput.GetOutput();
                     Assert.Contains("Please enter a professor's name:", output);
                     Assert.Contains("John Doe", output);
