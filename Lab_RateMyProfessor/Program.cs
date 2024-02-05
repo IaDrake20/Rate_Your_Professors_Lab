@@ -154,10 +154,11 @@ namespace RateMyProfessor
                             if (p.id.ToString().Equals(_guid))
                             {
                                 //Console.WriteLine("Comparing " + p.id + " to " + _guid);
-                               
+                                        prof = p;
                                         Console.WriteLine("Please enter a new name.");
                                         string temp= Console.ReadLine();
                                         Guid tempid=prof.getId();
+                                        
                                         List <Ratings> ratttt = prof.getRat();
                                         File_Manager.deleteProfessor(p);
                                         Professor rara = new Professor(temp, tempid, ratttt);
