@@ -24,35 +24,25 @@ namespace RateMyProfessor
 
             while (run)
             {
-                Console.WriteLine("M: \nM for menu to see options, E: Exit, " +
-                            "\n-add: start adding a professor to be rated within a category" +
-                            "\n-addProf: add professor only" +
-                            "\n-addCateg: add category only" +
-                            "\n-addRating: add Rating to a professor" +
-                            "\n-editProf: edit name" +
-                            "\n-editCateg: edit the category name and description" +
-                            "\n-editRateing: edit the rating of a professor" +
+                Console.WriteLine("M: M for menu to see options, E: Exit, " +
+                            "\n-add: start adding a professor to be rated within a category, -addProf: add professor only, -addCateg: add category only, -addRating: add Rating to a professor" +
+                            "\n-editProf: edit name, -editCateg: edit the category name and description, -editRating: edit the rating of a professor" +
                             "\n");
                 response = Console.ReadLine();
 
                 switch (response)
                 {
                     case "M":
-                        Console.WriteLine("M: \nM for menu to see options, E: Exit, C: Continue" +
-                            "\n-add: start adding a professor to be rated within a category" +
-                            "\n-addProf: add professor only" +
-                            "\n-addCateg: add category only" +
-                            "\n-addRating: add Rating to a professor" +
-                            "\n-editProf: edit name" +
-                            "\n-editCateg: edit the category name and description" +
-                            "\n-editRating: edit the rating of a professor" +
+                        Console.WriteLine("M: M for menu to see options, E: Exit, C: Continue, " +
+                            "\n-add: start adding a professor to be rated within a category, -addProf: add professor only, -addCateg: add category only, -addRating: add Rating to a professor" +
+                            "\n-editProf: edit name, -editCateg: edit the category name and description, -editRating: edit the rating of a professor" +
                             "\n");
                         break;
                     case "-add":
                         Console.WriteLine("Please enter a professor's name.");
                         prof_name = Console.ReadLine();
                         _prof = new Professor(prof_name);
-
+                        
                         Console.WriteLine("Please enter a category.");
                         string cat_name = Console.ReadLine();
 
