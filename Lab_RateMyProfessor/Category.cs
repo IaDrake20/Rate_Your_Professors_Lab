@@ -21,7 +21,10 @@ namespace RateMyProfessor
         public Category()
         {
         }
-
+        public Category(Guid categoryId)
+        {
+            this.categoryId = categoryId;
+        }
         public string getName()
         {
             return categoryName;
