@@ -14,6 +14,10 @@ namespace Lab_RateMyProfessor
     {
         public static bool addCategory(Category cat)
         {
+            string path = "categories.json";
+            EnsureFileExists(path);
+
+
             //IAN: if it returns true that the category exists then don't add anything
             // if else then add the category
             if (!AssertExistance(cat.categoryName, 'c'))
@@ -21,18 +25,8 @@ namespace Lab_RateMyProfessor
                 Console.WriteLine("ERROR: Category already exists");
                 return false;
             } else
-            {
-                string path = "categories.json";
-                //using (StreamWriter w = File.AppendText("categories.json"))
-                if (!File.Exists(path))
-                {
-                    // Create a file to write to.
-                    string createText = "" + Environment.NewLine;
-                    File.WriteAllText(path, createText);
-                }
-
-
-                    try
+            {                
+                try
                 {
                     string existingJson = File.ReadAllText(path);
 
@@ -72,6 +66,7 @@ namespace Lab_RateMyProfessor
         {
             string path = "ratings.json";
             //using (StreamWriter w = File.AppendText("ratings.json"))
+            EnsureFileExists(path);
 
             try
             {
@@ -108,14 +103,16 @@ namespace Lab_RateMyProfessor
 
         public static bool addProfessor(Professor pro)
         {
+            string path = "professors.json";
+            EnsureFileExists(path);
 
-            if(!AssertExistance(pro.name, 'p'))
+            if (!AssertExistance(pro.name, 'p'))
             {
                 Console.WriteLine("ERROR: The professor you tried to add already exists");
                 return false;
             } else
             {
-                string path = "professors.json";
+                
                 //using (StreamWriter w = File.AppendText("professors.json"))
 
                 try
@@ -355,6 +352,16 @@ namespace Lab_RateMyProfessor
             }
             
             return true;
+        }
+
+        private static void EnsureFileExists(string filePath)
+        {
+            string directoryPath = filePath;//Path.GetDirectoryName(filePath);
+            Console.WriteLine("\n\n\n"+Path.GetDirectoryName(filePath)+"\n\n\n" );
+            if (!File.Exists(filePath))
+            {
+                File.WriteAllText(filePath, " ");
+            }
         }
 
     }

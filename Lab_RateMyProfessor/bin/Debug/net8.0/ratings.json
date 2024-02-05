@@ -10,5 +10,11 @@
     "professorId": "3d3a5d2b-c470-4d60-8a70-f70dca9220d7",
     "categoryId": "147ed67c-5a81-46e7-9cf3-1e94b27b860b",
     "ratingValue": 10
+  },
+  {
+    "ratingId": "cc47085d-b906-4343-afc0-5ab7fa2bb82a",
+    "professorId": "11aa3a89-9bf3-4d39-b942-dd1656e7c4da",
+    "categoryId": "5d71d49a-ca23-46b3-8b73-d368de2e76b1",
+    "ratingValue": 9
   }
 ]
