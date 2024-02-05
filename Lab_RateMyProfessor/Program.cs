@@ -25,9 +25,10 @@ namespace RateMyProfessor
 
             while (run)
             {
-                Console.WriteLine("\n\nM: M for menu to see options, E: Exit, C: Continue, " +
+                Console.WriteLine("\n\nM: M for menu to see options, E: Exit," +
                             "\n-add: start adding a professor to be rated within a category, -addProf: add professor only, -addCateg: add category only, -addRating: add Rating to a professor" +
                             "\n-editProf: edit name, -editCateg: edit the category name and description, -editRating: edit the rating of a professor" +
+                            "\n-viewProf: view a list of professors and their Guids, -viewCateg: view list of categories, -viewRatings: view list of ratings" +
                             "\n-rmProf: remove a professor, -rmCateg: remove a category, -rmRating: remove a rating from a professor" +
                             "\n-delProf: delete professor json file, -delCateg: delete category json file, -delRating: delete ratings file" +
                             "\n");
@@ -39,6 +40,7 @@ namespace RateMyProfessor
                         Console.WriteLine("\n\nM: M for menu to see options, E: Exit," +
                             "\n-add: start adding a professor to be rated within a category, -addProf: add professor only, -addCateg: add category only, -addRating: add Rating to a professor" +
                             "\n-editProf: edit name, -editCateg: edit the category name and description, -editRating: edit the rating of a professor" +
+                            "\n-viewProf: view a list of professors and their Guids, -viewCateg: view list of categories, -viewRatings: view list of ratings"+
                             "\n-rmProf: remove a professor, -rmCateg: remove a category, -rmRating: remove a rating from a professor" +
                             "\n-delProf: delete professor json file, -delCateg: delete category json file, -delRating: delete ratings file" +
                             "\n");

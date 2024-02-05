@@ -28,5 +28,11 @@
     "professorId": "03fd8aa7-afc9-4c1c-8de4-f794a2a87b69",
     "categoryId": "9649bdff-bd91-42d5-95e6-51ae5805e1bf",
     "ratingValue": 8
+  },
+  {
+    "ratingId": "748ab076-76c9-4df6-944c-84a59507fa47",
+    "professorId": "25cb1fb3-f389-4d41-9b74-7b5ece227a67",
+    "categoryId": "52b71d2b-bb53-4582-aa39-3cc8c35b18e7",
+    "ratingValue": 10
   }
 ]
