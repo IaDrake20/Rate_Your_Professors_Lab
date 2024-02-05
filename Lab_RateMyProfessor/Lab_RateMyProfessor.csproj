@@ -28,7 +28,6 @@
 	
   <ItemGroup>
     <None Include="bin\Debug\net8.0\professors.json" />
-    <None Include="bin\Debug\net8.0\ratings.json" />
   </ItemGroup>
 
 </Project>

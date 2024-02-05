@@ -62,6 +62,8 @@ namespace RateMyProfessor
 
                         Console.WriteLine("Please enter a rating for the professor.");
                         string prof_rating = Console.ReadLine();
+                        Ratings _rating = new Ratings(_prof.getId(), _category.getCategoryId(), Int32.Parse(prof_rating));
+                        _prof.addRating(_rating);
 
                         try
                         {
@@ -107,7 +109,7 @@ namespace RateMyProfessor
                         {
                             if (p.id.ToString().Equals(_guid))
                             {
-                                Console.WriteLine("Comparing " + p.id + " to " + _guid);
+                                //Console.WriteLine("Comparing " + p.id + " to " + _guid);
                                 prof = p;
                                 Console.WriteLine("Please pick what to edit.\n1:Name\n2:Rating");
                                 response = Console.ReadLine();
