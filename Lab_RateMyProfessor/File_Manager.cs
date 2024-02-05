@@ -12,13 +12,14 @@ namespace Lab_RateMyProfessor
 {
     internal class File_Manager
     {
-        public static void addCategory(Category cat)
+        public static bool addCategory(Category cat)
         {
             //IAN: if it returns true that the category exists then don't add anything
             // if else then add the category
             if (!AssertExistance(cat.categoryName, 'c'))
             {
                 Console.WriteLine("ERROR: Category already exists");
+                return false;
             } else
             {
                 string path = "categories.json";
@@ -46,15 +47,18 @@ namespace Lab_RateMyProfessor
                 catch (JsonSerializationException ex)
                 {
                     Console.WriteLine($"Error during JSON serialization/deserialization: {ex.Message}");
+                    return false;
                 }
                 catch (IOException ex)
                 {
                     Console.WriteLine($"Error reading/writing the file: {ex.Message}");
+                    return false;
                 }
+                return true;
             }
         }
 
-        public static void addRating(Ratings rat)
+        public static bool addRating(Ratings rat)
         {
             string path = "ratings.json";
 
@@ -81,19 +85,23 @@ namespace Lab_RateMyProfessor
             catch (JsonSerializationException ex)
             {
                 Console.WriteLine($"Error during JSON serialization/deserialization: {ex.Message}");
+                return false;
             }
             catch (IOException ex)
             {
                 Console.WriteLine($"Error reading/writing the file: {ex.Message}");
+                return false;
             }
+            return true;
         }
 
-        public static void addProfessor(Professor pro)
+        public static bool addProfessor(Professor pro)
         {
 
-            if(AssertExistance(pro.name, 'p'))
+            if(!AssertExistance(pro.name, 'p'))
             {
                 Console.WriteLine("ERROR: The professor you tried to add already exists");
+                return false;
             } else
             {
                 string path = "professors.json";
@@ -121,11 +129,14 @@ namespace Lab_RateMyProfessor
                 catch (JsonSerializationException ex)
                 {
                     Console.WriteLine($"Error during JSON serialization/deserialization: {ex.Message}");
+                    return false;
                 }
                 catch (IOException ex)
                 {
                     Console.WriteLine($"Error reading/writing the file: {ex.Message}");
+                    return false;
                 }
+                return true;
             }
         }
 
