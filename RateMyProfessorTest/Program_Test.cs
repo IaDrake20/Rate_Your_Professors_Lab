@@ -140,7 +140,7 @@ namespace Lab_RateMyProfessor
         }
 
         [Fact]
-        public void Test_Get_Categories()
+        public void Test_FM_Get_Categories()
         {
             Category cat1 = new Category("funniest", "who make you laugh");
             Category cat2 = new Category("loudest", "who yells");
@@ -189,73 +189,55 @@ namespace Lab_RateMyProfessor
 
         }
 
+        [Fact]
+        public void Test_Ratings_GetId()
+        {
+            Professor bilitski = new Professor("bilitski");
+            Ratings rating = new Ratings(bilitski.getId(), new Guid(), 10);
+            Assert.True(rating.ratingId == rating.getId());
 
+        }
+
+        [Fact]
+        public void Test_Ratings_GetSetValue()
+        {
+            Professor bilitski = new Professor("bilitski");
+            Ratings rating = new Ratings(bilitski.getId(), new Guid(), 7);
+
+            rating.setRatingValue(10);
+            Assert.True(rating.getRatingValue() == 10);
+        }
+
+        [Fact]
+        public void Test_Ratings_Get_Pid()
+        {
+            Professor bilitski = new Professor("bilitski");
+            Ratings rating = new Ratings(bilitski.getId(), new Guid(), 7);
+
+            Assert.True(rating.getProfessorId() == bilitski.getId());
+        }
+
+        [Fact]
+        public void Test_Category_GetSet_Name()
+        {
+            Category category = new Category();
+            category.setName("name");
+
+            Assert.Equal("name", category.getName());
+        }
+
+        [Fact]
+        public void Test_Category_GetSet_Description()
+        {
+            Category category = new Category();
+
+            category.setDescription("description");
+            Assert.Equal("description", category.getDescription());
+        }
 
     }
 
 
-
-
-
-
-        /*public class ProfessorTests
-        {
-            [Fact]
-            public void TestProfessor()
-            {
-                using (var consoleOutput = new ConsoleOutput())
-                {
-                 
-                    Professor professor = new Professor();
-
-                    // Simulate user input for the Main method
-                    string[] userInputs = { "-addProf", "John Doe", "-viewProf", "E" };
-
-                    
-                    SimulateUserInput(userInputs);
-                    //This needs a proper main reference so that the test runs main
-                    //Lab_RateMyProfessor.Program.Main(null);
-
-                   
-                    string output = consoleOutput.GetOutput();
-                    Assert.Contains("Please enter a professor's name:", output);
-                    Assert.Contains("John Doe", output);
-                    Assert.Contains("John Doe", output);
-                }
-            }
-
-            private void SimulateUserInput(string[] inputs)
-            {
-                using (var stringReader = new StringReader(string.Join(Environment.NewLine, inputs)))
-                {
-                    Console.SetIn(stringReader);
-                }
-            }
-
-            private class ConsoleOutput : IDisposable
-            {
-                private readonly StringWriter stringWriter;
-                private readonly TextWriter originalOutput;
-
-                public ConsoleOutput()
-                {
-                    stringWriter = new StringWriter();
-                    originalOutput = Console.Out;
-                    Console.SetOut(stringWriter);
-                }
-
-                public string GetOutput()
-                {
-                    return stringWriter.ToString();
-                }
-
-                public void Dispose()
-                {
-                    stringWriter.Dispose();
-                    Console.SetOut(originalOutput);
-                }
-            }
-        }*/
 }
 
 
