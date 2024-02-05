@@ -61,8 +61,13 @@ namespace Lab_RateMyProfessor
             bilitski.addRating(rat);
 
 
+            //add and retrieve json
             Assert.True(File_Manager.addProfessor(bilitski));
+            Assert.Contains(bilitski, File_Manager.getProfessors());
+
             Assert.True(File_Manager.addCategory(bestDressed));
+            Assert.Contains(bestDressed, File_Manager.getCategories());
+
             Assert.True(File_Manager.addRating(rat));
 
             //dupe

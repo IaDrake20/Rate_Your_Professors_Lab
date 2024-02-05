@@ -6,7 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <StartupObject>RateMyProfessor.Program</StartupObject>
-  </PropertyGroup>	
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="obj\Debug\net8.0\categories.json" />
+    <Content Include="obj\Debug\net8.0\professors.json" />
+    <Content Include="obj\Debug\net8.0\ratings.json" />
+  </ItemGroup>	
 	
   <ItemGroup>
     <PackageReference Include="more.xunit.runner.visualstudio" Version="2.3.1">

@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Lab_RateMyProfessor
 {
-    internal class File_Manager
+    public class File_Manager
     {
         public static bool addCategory(Category cat)
         {
