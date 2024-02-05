@@ -19,7 +19,7 @@ namespace RateMyProfessor
             string cat_desc = "";
             Category _cat = new Category();
             Professor _prof = new Professor();
-
+            string _guid = "";
 
 
             while (run)
@@ -66,8 +66,7 @@ namespace RateMyProfessor
                         Console.WriteLine("Please enter the category's description.");
                         prof_name = Console.ReadLine();
                         _category = new Category(cat_name, cat_desc);
-<<<<<<< Updated upstream
-=======
+
                         File_Manager.addCategory(_category);
                         break;
                     case "-addRating":
@@ -343,7 +342,7 @@ namespace RateMyProfessor
                         break;
                     case "delRatings":
                         File_Manager.DeleteFile("ratings.json");
->>>>>>> Stashed changes
+
                         break;
                     case "E":
                         Console.WriteLine("Exiting Program...");
