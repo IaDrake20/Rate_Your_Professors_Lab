@@ -1,35 +1,35 @@
 ﻿using System;
 namespace RateMyProfessor
 {
-	public class Professor
-	{
+    public class Professor
+    {
         public String name;
 
-		public Guid id;
+        public Guid id;
 
         public List<Ratings> ratings;
 
-		public Professor()
-		{
-			name = "";
-			id = Guid.NewGuid();
-			ratings = new List<Ratings>();
-		}
+        public Professor()
+        {
+            name = "";
+            id = Guid.NewGuid();
+            ratings = new List<Ratings>();
+        }
 
-		public Professor(String n)
-		{
-			name = n;
+        public Professor(String n)
+        {
+            name = n;
 
-			id = Guid.NewGuid();
+            id = Guid.NewGuid();
 
-			ratings = new List<Ratings>();
-		}
+            ratings = new List<Ratings>();
+        }
 
 
-		public Guid getId()
-		{
-			return id;
-		}
+        public Guid getId()
+        {
+            return id;
+        }
 
         public string RecieveProfName()
         {
@@ -39,12 +39,40 @@ namespace RateMyProfessor
             return p_input;
         }
 
-		public void addRating(Ratings rat)
-		{
-			ratings.Add(rat);	
-		}      
-}
-}
+        public void addRating(Ratings rat)
+        {
+            ratings.Add(rat);
+        }
+
+        public void setProfName(String newname)
+        {
+            name = newname;
+        }
+
+        public String deleteProfRating(Ratings r)
+        {
+            if (ratings.Contains(r))
+            {
+                ratings.Remove(r);
+                return "Successfully deleted rating: " + r;
+            }
+            else
+                return "Could not remove rating";
+
+        }
+
+        public static string EditProfRating(Ratings r, Ratings new)
+        {
+             if(ratings.Contains(r))
+            return "Successfully changed rating";
+        }
+        
+           
+        
+        }
+    }
+
+
 
 /*
         * public static String[] internallisting=new String[200];
