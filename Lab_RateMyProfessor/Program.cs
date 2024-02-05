@@ -15,7 +15,7 @@ namespace RateMyProfessor
             string response = "";
             string prof_name = "";
 
-            Guid _guid = Guid.NewGuid();
+            string _guid = "";
 
             string cat_desc = "";
             Category _category = new Category();
@@ -84,14 +84,14 @@ namespace RateMyProfessor
                         break;
                     case "-rmProf":
                         Console.WriteLine("Please enter the Guid of the professor to remove");
-                        _guid = new Guid(Console.ReadLine());
+                        _guid = Console.ReadLine();
 
                         Professor prof = new Professor();
 
                         List<Professor> _professors =  File_Manager.getProfessors();
                         foreach(Professor p in _professors)
                         {
-                            if(p.id == _guid)
+                            if(p.id.Equals(_guid))
                             {
                                 prof = p;
                             }
@@ -102,14 +102,14 @@ namespace RateMyProfessor
 
                     case "-rmCateg":
                         Console.WriteLine("Please enter the Guid of the category to remove.");
-                        _guid = new Guid(Console.ReadLine());
+                        _guid = Console.ReadLine();
 
                         Category cat = new Category();
 
                         List<Category> _categories = File_Manager.getCategories();
                         foreach(Category c in _categories)
                         {
-                            if(c.categoryId == _guid)
+                            if(c.categoryId.Equals(_guid))
                             {
                                 cat = c;
                             }
@@ -118,14 +118,14 @@ namespace RateMyProfessor
                         break;
                     case "-rmRating":
                         Console.WriteLine("Please enter the Guid of the rating to remove.");
-                        _guid = new Guid(Console.ReadLine());
+                        _guid = (Console.ReadLine());
 
                         Ratings rat = new Ratings();
 
                         List<Ratings> _ratings = File_Manager.getRatings();
                         foreach(Ratings r in _ratings)
                         {
-                            if(r.ratingId == _guid)
+                            if(r.ratingId.Equals(_guid))
                             {
                                 rat = r;
                             }
