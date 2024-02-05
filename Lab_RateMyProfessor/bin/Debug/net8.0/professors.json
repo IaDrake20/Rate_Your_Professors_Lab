@@ -8,5 +8,10 @@
     "name": "Bob",
     "id": "cde326b1-4cde-449c-9a0d-18db895e0114",
     "ratings": []
+  },
+  {
+    "name": "Joe",
+    "id": "03fd8aa7-afc9-4c1c-8de4-f794a2a87b69",
+    "ratings": []
   }
 ]

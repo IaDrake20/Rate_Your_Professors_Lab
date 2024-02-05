@@ -23,5 +23,10 @@
     "categoryName": "CS",
     "categoryId": "81462170-9e0a-44d8-97ac-5687dd6af6f1",
     "description": "Genius"
+  },
+  {
+    "categoryName": "Smithing",
+    "categoryId": "9649bdff-bd91-42d5-95e6-51ae5805e1bf",
+    "description": "making stuff"
   }
 ]

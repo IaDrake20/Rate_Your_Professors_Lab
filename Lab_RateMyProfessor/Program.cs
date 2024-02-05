@@ -25,7 +25,7 @@ namespace RateMyProfessor
 
             while (run)
             {
-                Console.WriteLine("M: M for menu to see options, E: Exit, C: Continue, " +
+                Console.WriteLine("\n\nM: M for menu to see options, E: Exit, C: Continue, " +
                             "\n-add: start adding a professor to be rated within a category, -addProf: add professor only, -addCateg: add category only, -addRating: add Rating to a professor" +
                             "\n-editProf: edit name, -editCateg: edit the category name and description, -editRating: edit the rating of a professor" +
                             "\n-rmProf: remove a professor, -rmCateg: remove a category, -rmRating: remove a rating from a professor" +
@@ -36,7 +36,7 @@ namespace RateMyProfessor
                 switch (response)
                 {
                     case "M":
-                        Console.WriteLine("M: M for menu to see options, E: Exit, C: Continue, " +
+                        Console.WriteLine("\n\nM: M for menu to see options, E: Exit," +
                             "\n-add: start adding a professor to be rated within a category, -addProf: add professor only, -addCateg: add category only, -addRating: add Rating to a professor" +
                             "\n-editProf: edit name, -editCateg: edit the category name and description, -editRating: edit the rating of a professor" +
                             "\n-rmProf: remove a professor, -rmCateg: remove a category, -rmRating: remove a rating from a professor" +
@@ -107,41 +107,40 @@ namespace RateMyProfessor
                             {
                                 Console.WriteLine("Comparing " + p.id + " to " + _guid);
                                 prof = p;
+                                Console.WriteLine("Please pick what to edit.\n1:Name\n2:Rating");
+                                response = Console.ReadLine();
+
+                                switch (response)
+                                {
+                                    case "1":
+                                        Console.WriteLine("Please enter a new name.");
+                                        prof.setProfName(Console.ReadLine());
+                                        break;
+                                    case "2":
+                                        Console.WriteLine("Listing ratings...");
+                                        List<Ratings> list = prof.ratings;
+                                        foreach (Ratings r_list in list)
+                                        {
+                                            Console.WriteLine(r_list.ratingId.ToString());
+                                        }
+                                        Console.WriteLine("Please enter the guid of the rating you wish to edit.");
+                                        response = Console.ReadLine();
+                                        foreach (Ratings r_list in list)
+                                        {
+                                            if (response.Equals(r_list.ratingId))
+                                            {
+                                                Console.WriteLine("Please enter your new rating");
+                                                r_list.setRatingValue(Int32.Parse(Console.ReadLine()));
+                                            }
+                                        }
+                                        break;
+                                }
+                                break;
                             } else
                             {
                                 Console.WriteLine("ERROR: professor not found. Check your Guid");
+                                break;
                             }
-                        }
-
-                        Console.WriteLine("Please pick what to edit.\n1:Name\n2:Rating");
-                        response = Console.ReadLine();
-
-                        Professor pf = new Professor();
-
-                        switch (response)
-                        {
-                            case "1":
-                                Console.WriteLine("Please enter a new name.");
-                                prof.setProfName(Console.ReadLine());
-                                break;
-                            case "2":
-                                Console.WriteLine("Listing ratings...");
-                                List<Ratings> list = prof.ratings;
-                                foreach(Ratings r_list in list)
-                                {
-                                    Console.WriteLine(r_list.ratingId.ToString());
-                                }
-                                Console.WriteLine("Please enter the guid of the rating you wish to edit.");
-                                response = Console.ReadLine();
-                                foreach(Ratings r_list in list)
-                                {
-                                    if (response.Equals(r_list.ratingId))
-                                    {
-                                        Console.WriteLine("Please enter your new rating");
-                                        r_list.setRatingValue(Int32.Parse(Console.ReadLine()));
-                                    }
-                                }
-                                break;
                         }
                         break;
                     case "-editCateg":
@@ -217,7 +216,7 @@ namespace RateMyProfessor
                         List<Ratings> rs = File_Manager.getRatings();
                         foreach(Ratings r in rs)
                         {
-                            Console.WriteLine(r.ratingId);
+                            Console.WriteLine("Rating ID: "+r.ratingId + " Assosciated Professor's ID:" +r.professorId+" Current Rating: "+r.ratingValue);
                         }
                         break;
                     case "-delProf":
