@@ -294,25 +294,25 @@ namespace RateMyProfessor
                         File_Manager.deleteRating(rat);
                         break;
                     case "-viewProf":
-                        Console.WriteLine("Displaying the current list of professors.");
+                        Console.WriteLine("Displaying the current list of professors.\n");
                         List<Professor> ps = File_Manager.getProfessors();
                         foreach(Professor p in ps)
                         {
-                            Console.WriteLine(p.name + " " + p.id);
+                            Console.WriteLine(p.name + " " + p.id + "\n");
                         }
                         break;
                     case "-viewCateg":
                         List<Category> cs = File_Manager.getCategories();
                         foreach(Category c in cs)
                         {
-                            Console.WriteLine(c.categoryName + " " + c.categoryId);
+                            Console.WriteLine(c.categoryName + " " + c.categoryId + "\n");
                         }
                         break;
                     case "-viewRatings":
                         List<Ratings> rs = File_Manager.getRatings();
                         foreach(Ratings r in rs)
                         {
-                            Console.WriteLine("Rating ID: "+r.ratingId + " Assosciated Professor's ID:" +r.professorId+" Current Rating: "+r.ratingValue);
+                            Console.WriteLine("Rating ID: "+r.ratingId + " Assosciated Professor's ID:" +r.professorId+" Current Rating: "+r.ratingValue + "\n");
                         }
                         break;
                     case "-delProf":
