@@ -1,0 +1,17 @@
+[
+  {
+    "categoryName": "funniest",
+    "categoryId": "fabb9add-3040-4f9d-b678-5c42a2ce7306",
+    "description": "who make you laugh"
+  },
+  {
+    "categoryName": "loudest",
+    "categoryId": "e82ea37e-1f91-4f0b-aecf-477833f63777",
+    "description": "who yells"
+  },
+  {
+    "categoryName": "hardest",
+    "categoryId": "791c6a47-97bf-4caf-996b-acb2b2c47d7d",
+    "description": "hardest class"
+  }
+]

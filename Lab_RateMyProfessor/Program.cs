@@ -189,9 +189,10 @@ namespace RateMyProfessor
                                 Console.WriteLine("Please enter the new category description.");
                                 string desc=Console.ReadLine();
                                 Category arisencategory=new Category(ggggg);
-                                File_Manager.addCategory(arisencategory);
-                                arisencategory.setName(name);   
+                                arisencategory.setName(name);
                                 arisencategory.setDescription(desc);
+                                File_Manager.addCategory(arisencategory);
+                                
                             }
                             else
                             {

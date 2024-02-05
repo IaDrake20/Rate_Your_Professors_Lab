@@ -1,0 +1,20 @@
+[
+  {
+    "ratingId": "c23cf686-917a-4700-8ff5-9269262be804",
+    "professorId": "b0450147-a5e9-4e72-8b21-6e1f856dd56b",
+    "categoryId": "84387694-a678-4c68-94c1-e894b0cee968",
+    "ratingValue": 10
+  },
+  {
+    "ratingId": "bbc77297-acd4-4624-bb7d-42aa0469a769",
+    "professorId": "b0450147-a5e9-4e72-8b21-6e1f856dd56b",
+    "categoryId": "84387694-a678-4c68-94c1-e894b0cee968",
+    "ratingValue": 5
+  },
+  {
+    "ratingId": "82c84a9b-4a2a-47d9-9770-e6c39ceccf7e",
+    "professorId": "b0450147-a5e9-4e72-8b21-6e1f856dd56b",
+    "categoryId": "84387694-a678-4c68-94c1-e894b0cee968",
+    "ratingValue": 7
+  }
+]
