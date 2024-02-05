@@ -23,10 +23,22 @@ namespace Lab_RateMyProfessor
             } else
             {
                 string path = "categories.json";
+                using (StreamWriter w = File.AppendText("categories.json"))
+
+                    /*
+                     * if (!File.Exists(path))
+        {
+            // Create a file to write to.
+            string createText = "Hello and Welcome" + Environment.NewLine;
+            File.WriteAllText(path, createText);
+        }
+                    */
 
                 try
                 {
                     string existingJson = File.ReadAllText(path);
+
+
 
                     List<Category> existingCategories;
 
@@ -61,6 +73,7 @@ namespace Lab_RateMyProfessor
         public static bool addRating(Ratings rat)
         {
             string path = "ratings.json";
+            using (StreamWriter w = File.AppendText("ratings.json"))
 
             try
             {
@@ -105,6 +118,7 @@ namespace Lab_RateMyProfessor
             } else
             {
                 string path = "professors.json";
+                using (StreamWriter w = File.AppendText("professors.json"))
 
                 try
                 {

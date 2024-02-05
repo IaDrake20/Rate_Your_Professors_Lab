@@ -65,6 +65,7 @@ namespace RateMyProfessor
                         Console.WriteLine("Please enter a professor's name.");
                         prof_name = Console.ReadLine();
                         _prof = new Professor(prof_name);
+                        File_Manager.addProfessor(_prof);
                         break;
                     case "-addCateg":
                         Console.WriteLine("Please enter a category.");
@@ -73,6 +74,7 @@ namespace RateMyProfessor
                         Console.WriteLine("Please enter the category's description.");
                         response = Console.ReadLine();
                         _category = new Category(cat_name, cat_desc);
+                        File_Manager.addCategory(_category);
                         break;
                     case "-addRating":
                         Console.WriteLine("Please enter the rating to add.");
@@ -135,7 +137,7 @@ namespace RateMyProfessor
                         List<Professor> ps = File_Manager.getProfessors();
                         foreach(Professor p in ps)
                         {
-                            Console.WriteLine(p.name + " " + p.id+" 1");
+                            Console.WriteLine(p.name + " " + p.id);
                         }
                         break;
                     case "-viewCateg":
