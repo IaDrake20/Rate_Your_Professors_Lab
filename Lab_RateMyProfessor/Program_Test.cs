@@ -68,8 +68,6 @@ namespace Lab_RateMyProfessor
             Assert.True(File_Manager.addProfessor(bilitski));
             Assert.True(File_Manager.addCategory(bestDressed));
 
-            //--------------ADD BREAK POINT TO CHECK OPERATIONS PRIOR TO CONTINUING---------------------
-
             File_Manager.deleteProfessor(bilitski);
             File_Manager.deleteCategory(bestDressed);
             File_Manager.deleteRating(rat);

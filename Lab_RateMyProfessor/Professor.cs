@@ -60,14 +60,6 @@ namespace RateMyProfessor
                 return "Could not remove rating";
 
         }
-
-        public static string EditProfRating(Ratings r, Ratings new)
-        {
-             if(ratings.Contains(r))
-            return "Successfully changed rating";
-        }
-        
-           
         
         }
     }

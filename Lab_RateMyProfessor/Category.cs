@@ -18,6 +18,10 @@ namespace RateMyProfessor
             categoryId = Guid.NewGuid();
         }
 
+        public Category()
+        {
+        }
+
         public string getName()
         {
             return categoryName;
