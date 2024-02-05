@@ -35,6 +35,9 @@ namespace RateMyProfessor
                             "\n-viewCateg: view the category properties" +
                             "\n-viewProf: view the professor properties" +
                             "\n-viewRatings: view the Rating Properties" +
+                            "\n-rmProf: remove professor entry only" +
+                            "\n-rmCateg: remove category entry only" +
+                            "\n-rmRating: remove a Rating from professor" +
                             "\n");
                 response = Console.ReadLine();
 
@@ -52,6 +55,9 @@ namespace RateMyProfessor
                             "\n-viewCateg: view the category properties" +
                             "\n-viewProf: view the professor properties" +
                             "\n-viewRatings: view the Rating Properties" +
+                             "\n-rmProf: remove professor entry only" +
+                            "\n-rmCateg: remove category entry only" +
+                            "\n-rmRating: remove a Rating from professor" +
                             "\n");
                         break;
                     case "-add":
@@ -89,37 +95,40 @@ namespace RateMyProfessor
                         File_Manager.addCategory(_category);
                         break;
                     case "-addRating":
-                        
+
                         Professor prof2 = new Professor();
                         Category cat = new Category();
                         Console.WriteLine("Please enter the Guid of the professor to add the Rating to");
-                        _guid = Console.ReadLine();
-                        
+                        string profGuid = Console.ReadLine();
+
                         List<Professor> _professors2 = File_Manager.getProfessors();
                         foreach (Professor p in _professors2)
                         {
-                            if (p.id.ToString().Equals(_guid))
+                            if (p.id.ToString().Equals(profGuid))
                             {
-                                // Console.WriteLine("Comparing " + p.id + " to " + _guid);
                                 prof2 = p;
                                 Console.WriteLine("Please enter the category to add the Rating to.");
-                                _guid = Console.ReadLine();
+                                string catGuid = Console.ReadLine(); // Use a different variable here
                                 List<Category> cate = File_Manager.getCategories();
+
                                 foreach (Category c in cate)
                                 {
-                                    if (c.categoryId.ToString().Equals(_guid))
+                                    Console.WriteLine(c.categoryId.ToString());
+
+                                    if (c.categoryId.ToString().Equals(catGuid))
                                     {
-                                        cat= c;
-                                        
-                                        Console.WriteLine("Please enter the rating to add.");
+                                        cat = c;
+                                        Console.WriteLine("Please enter the rating.");
                                         prof_rating = Console.ReadLine();
                                         _rating = new Ratings(prof2.getId(), cat.getCategoryId(), Int32.Parse(prof_rating));
+
                                         while (_rating.ratingValue < 1 || _rating.ratingValue > 10)
                                         {
-                                            Console.WriteLine("Please enter the rating to add.");
+                                            Console.WriteLine("Please enter the rating.");
                                             prof_rating = Console.ReadLine();
                                             _rating = new Ratings(prof2.getId(), cat.getCategoryId(), Int32.Parse(prof_rating));
                                         }
+
                                         File_Manager.addRating(_rating);
                                     }
                                     else
@@ -128,16 +137,11 @@ namespace RateMyProfessor
                                         break;
                                     }
                                 }
-                                
-                            }
-                            else
-                            {
-                                Console.WriteLine("ERROR: professor not found. Check your Guid");
-                                break;
                             }
                         }
 
                         break;
+
                     case "-editProf":
                         Console.WriteLine("Please enter the Guid of the professor to edit");
                         _guid = Console.ReadLine();
@@ -150,37 +154,18 @@ namespace RateMyProfessor
                             if (p.id.ToString().Equals(_guid))
                             {
                                 //Console.WriteLine("Comparing " + p.id + " to " + _guid);
-                                prof = p;
-                                Console.WriteLine("Please pick what to edit.\n1:Name\n2:Rating");
-                                response = Console.ReadLine();
-
-                                switch (response)
-                                {
-                                    case "1":
+                               
                                         Console.WriteLine("Please enter a new name.");
-                                        prof.setProfName(Console.ReadLine());
+                                        string temp= Console.ReadLine();
+                                        Guid tempid=prof.getId();
+                                        List <Ratings> ratttt = prof.getRat();
+                                        File_Manager.deleteProfessor(p);
+                                        Professor rara = new Professor(temp, tempid, ratttt);
+                                        File_Manager.addProfessor(rara);
                                         break;
-                                    case "2":
-                                        Console.WriteLine("Listing ratings...");
-                                        List<Ratings> list = prof.ratings;
-                                        foreach (Ratings r_list in list)
-                                        {
-                                            Console.WriteLine(r_list.ratingId.ToString());
-                                        }
-                                        Console.WriteLine("Please enter the guid of the rating you wish to edit.");
-                                        response = Console.ReadLine();
-                                        foreach (Ratings r_list in list)
-                                        {
-                                            if (response.Equals(r_list.ratingId))
-                                            {
-                                                Console.WriteLine("Please enter your new rating");
-                                                r_list.setRatingValue(Int32.Parse(Console.ReadLine()));
-                                            }
-                                        }
-                                        break;
+                                   
                                 }
-                                break;
-                            } else
+                            else
                             {
                                 Console.WriteLine("ERROR: professor not found. Check your Guid");
                                 break;
@@ -218,18 +203,18 @@ namespace RateMyProfessor
                     case "-editRating":
 
                         Console.WriteLine("Please enter the Guid of the professor to change the Rating for");
-                        string profGuid = Console.ReadLine();
+                        string profGuide = Console.ReadLine();
 
                         List<Professor> _professors22 = File_Manager.getProfessors();
-                        Professor prof22 = _professors22.FirstOrDefault(p => p.id.ToString().Equals(profGuid));
+                        Professor prof22 = _professors22.FirstOrDefault(p => p.id.ToString().Equals(profGuide));
 
                         if (prof22 != null)
                         {
                             Console.WriteLine("Please enter the category to change the Rating for.");
-                            string catGuid = Console.ReadLine();
+                            string catGuide = Console.ReadLine();
 
                             List<Category> cate22 = File_Manager.getCategories();
-                            Category cat22 = cate22.FirstOrDefault(c => c.categoryId.ToString().Equals(catGuid));
+                            Category cat22 = cate22.FirstOrDefault(c => c.categoryId.ToString().Equals(catGuide));
 
                             if (cat22 != null)
                             {

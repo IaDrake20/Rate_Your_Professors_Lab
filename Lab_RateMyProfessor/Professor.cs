@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 namespace RateMyProfessor
 {
     public class Professor
@@ -7,8 +8,8 @@ namespace RateMyProfessor
 
         public Guid id;
 
+        [JsonProperty]
         public List<Ratings> ratings;
-
         public Professor()
         {
             name = "";
@@ -23,6 +24,15 @@ namespace RateMyProfessor
             id = Guid.NewGuid();
 
             ratings = new List<Ratings>();
+        }
+
+        public Professor(String n, Guid newid, List<Ratings> newrat)
+        {
+            name = n;
+
+            id = newid;
+
+            ratings = newrat;
         }
 
 
