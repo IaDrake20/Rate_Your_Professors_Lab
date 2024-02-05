@@ -25,11 +25,12 @@ namespace RateMyProfessor
 
             while (run)
             {
-                Console.WriteLine("M: M for menu to see options, E: Exit, " +
+                Console.WriteLine("M: M for menu to see options, E: Exit, C: Continue, " +
                             "\n-add: start adding a professor to be rated within a category, -addProf: add professor only, -addCateg: add category only, -addRating: add Rating to a professor" +
                             "\n-editProf: edit name, -editCateg: edit the category name and description, -editRating: edit the rating of a professor" +
                             "\n-rmProf: remove a professor, -rmCateg: remove a category, -rmRating: remove a rating from a professor" +
-                            "\n-viewProf: view professors and their guids, -viewCateg: view categories and their guids, -viewRatings: view ratings and their guids");
+                            "\n-delProf: delete professor json file, -delCateg: delete category json file, -delRating: delete ratings file" +
+                            "\n");
                 response = Console.ReadLine();
 
                 switch (response)
@@ -39,6 +40,7 @@ namespace RateMyProfessor
                             "\n-add: start adding a professor to be rated within a category, -addProf: add professor only, -addCateg: add category only, -addRating: add Rating to a professor" +
                             "\n-editProf: edit name, -editCateg: edit the category name and description, -editRating: edit the rating of a professor" +
                             "\n-rmProf: remove a professor, -rmCateg: remove a category, -rmRating: remove a rating from a professor" +
+                            "\n-delProf: delete professor json file, -delCateg: delete category json file, -delRating: delete ratings file" +
                             "\n");
                         break;
                     case "-add":
@@ -58,6 +60,16 @@ namespace RateMyProfessor
 
                         Console.WriteLine("Please enter a rating for the professor.");
                         string prof_rating = Console.ReadLine();
+
+                        try
+                        {
+                            int rating = Int32.Parse(prof_rating);
+                        } catch( Exception ex)
+                        {
+                            Console.WriteLine("ERROR: Please enter a number for the rating.");
+                            break;
+                        }
+
                         Ratings _rating = new Ratings(_prof.getId(), _category.getCategoryId(), Int32.Parse(prof_rating));
                         File_Manager.addRating(_rating);
                         break;
@@ -82,16 +94,70 @@ namespace RateMyProfessor
                         _rating = new Ratings(_prof.getId(), _category.getCategoryId(), Int32.Parse(prof_rating));
                         File_Manager.addRating(_rating);
                         break;
-                    case "-rmProf":
-                        Console.WriteLine("Please enter the Guid of the professor to remove");
+                    case "-editProf":
+                        Console.WriteLine("Please enter the Guid of the professor to edit");
                         _guid = Console.ReadLine();
 
                         Professor prof = new Professor();
 
-                        List<Professor> _professors =  File_Manager.getProfessors();
+                        List<Professor> _professors = File_Manager.getProfessors();
+                        foreach (Professor p in _professors)
+                        {
+                            if (p.id.ToString().Equals(_guid))
+                            {
+                                Console.WriteLine("Comparing " + p.id + " to " + _guid);
+                                prof = p;
+                            } else
+                            {
+                                Console.WriteLine("ERROR: professor not found. Check your Guid");
+                            }
+                        }
+
+                        Console.WriteLine("Please pick what to edit.\n1:Name\n2:Rating");
+                        response = Console.ReadLine();
+
+                        Professor pf = new Professor();
+
+                        switch (response)
+                        {
+                            case "1":
+                                Console.WriteLine("Please enter a new name.");
+                                prof.setProfName(Console.ReadLine());
+                                break;
+                            case "2":
+                                Console.WriteLine("Listing ratings...");
+                                List<Ratings> list = prof.ratings;
+                                foreach(Ratings r_list in list)
+                                {
+                                    Console.WriteLine(r_list.ratingId.ToString());
+                                }
+                                Console.WriteLine("Please enter the guid of the rating you wish to edit.");
+                                response = Console.ReadLine();
+                                foreach(Ratings r_list in list)
+                                {
+                                    if (response.Equals(r_list.ratingId))
+                                    {
+                                        Console.WriteLine("Please enter your new rating");
+                                        r_list.setRatingValue(Int32.Parse(Console.ReadLine()));
+                                    }
+                                }
+                                break;
+                        }
+                        break;
+                    case "-editCateg":
+                        break;
+                    case "-editRating":
+                        break;
+                    case "-rmProf":
+                        Console.WriteLine("Please enter the Guid of the professor to remove");
+                        _guid = Console.ReadLine();
+
+                        prof = new Professor();
+
+                        _professors =  File_Manager.getProfessors();
                         foreach(Professor p in _professors)
                         {
-                            if(p.id.Equals(_guid))
+                            if(p.id.ToString().Equals(_guid))
                             {
                                 prof = p;
                             }
@@ -109,7 +175,7 @@ namespace RateMyProfessor
                         List<Category> _categories = File_Manager.getCategories();
                         foreach(Category c in _categories)
                         {
-                            if(c.categoryId.Equals(_guid))
+                            if(c.categoryId.ToString().Equals(_guid))
                             {
                                 cat = c;
                             }
@@ -125,7 +191,7 @@ namespace RateMyProfessor
                         List<Ratings> _ratings = File_Manager.getRatings();
                         foreach(Ratings r in _ratings)
                         {
-                            if(r.ratingId.Equals(_guid))
+                            if(r.ratingId.ToString().Equals(_guid))
                             {
                                 rat = r;
                             }
@@ -153,6 +219,15 @@ namespace RateMyProfessor
                         {
                             Console.WriteLine(r.ratingId);
                         }
+                        break;
+                    case "-delProf":
+                        File_Manager.DeleteFile("professors.json");
+                        break;
+                    case "-delCateg":
+                        File_Manager.DeleteFile("categories.json");
+                        break;
+                    case "delRatings":
+                        File_Manager.DeleteFile("ratings.json");
                         break;
                     case "E":
                         Console.WriteLine("Exiting Program...");

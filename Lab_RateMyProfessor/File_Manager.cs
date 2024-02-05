@@ -354,6 +354,11 @@ namespace Lab_RateMyProfessor
             return true;
         }
 
+        public static void DeleteFile(string path)
+        {
+            File.Delete(path);
+        }
+
         private static void EnsureFileExists(string filePath)
         {
             string directoryPath = filePath;//Path.GetDirectoryName(filePath);
