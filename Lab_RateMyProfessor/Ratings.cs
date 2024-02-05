@@ -31,8 +31,18 @@ namespace RateMyProfessor
 			ratingValue = value;
 
 		}
+        public Ratings(Guid rId, Guid pId, Guid catId, int value)
+        {
+            ratingId = Guid.NewGuid();
 
-		public Guid getId()
+            professorId = pId;
+
+            categoryId = catId;
+
+            ratingValue = value;
+
+        }
+        public Guid getId()
 		{
 			return ratingId;
 		}
