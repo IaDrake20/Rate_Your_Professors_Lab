@@ -32,6 +32,9 @@ namespace RateMyProfessor
                             "\n-editProf: edit name" +
                             "\n-editCateg: edit the category name and description" +
                             "\n-editRating: edit the rating of a professor" +
+                            "\n-viewCateg: view the category properties" +
+                            "\n-viewProf: view the professor properties" +
+                            "\n-viewRatings: view the Rating Properties" +
                             "\n");
                 response = Console.ReadLine();
 
@@ -46,6 +49,9 @@ namespace RateMyProfessor
                             "\n-editProf: edit name" +
                             "\n-editCateg: edit the category name and description" +
                             "\n-editRating: edit the rating of a professor" +
+                            "\n-viewCateg: view the category properties" +
+                            "\n-viewProf: view the professor properties" +
+                            "\n-viewRatings: view the Rating Properties" +
                             "\n");
                         break;
                     case "-add":
