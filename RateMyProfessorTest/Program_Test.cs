@@ -18,7 +18,7 @@ namespace Lab_RateMyProfessor
         [Fact]
         public void Test_FM_Add_Delete_Category()
         {
-            //add , retrieve , delte json -- Categories
+            //add , retrieve , delete json -- Categories
 
             Professor bilitski = new Professor("bilitski");
             Category bestDressed = new Category("Best Dressed", "Who dresses the best");
@@ -56,7 +56,7 @@ namespace Lab_RateMyProfessor
         [Fact]
         public void Test_FM_Add_Delete_Professor()
         {
-            //add and retrieve json -- Professor
+            //add , retrieve , delete json -- Professor
 
             Professor bilitski = new Professor("bilitski");
             Category bestDressed = new Category("Best Dressed", "Who dresses the best");
@@ -103,7 +103,7 @@ namespace Lab_RateMyProfessor
         public void Test_FM_Add_Delete_Rating()
         {
 
-            //add and retrieve json -- Ratings
+            //add , retrieve , delete json -- Ratings
 
             Professor bilitski = new Professor("bilitski");
             Category bestDressed = new Category("Best Dressed", "Who dresses the best");
