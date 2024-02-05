@@ -36,6 +36,17 @@ namespace RateMyProfessor
         {
             return description;
         }
+
+        public void setName(string n)
+        {
+            categoryName = n;
+        }
+
+        public void setDescription(string d)
+        {
+            description = d;
+        }
+
     }
 }
 
