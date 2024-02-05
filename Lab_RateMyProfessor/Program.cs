@@ -38,23 +38,28 @@ namespace RateMyProfessor
                         Console.WriteLine("M: M for menu to see options, E: Exit, C: Continue, " +
                             "\n-add: start adding a professor to be rated within a category, -addProf: add professor only, -addCateg: add category only, -addRating: add Rating to a professor" +
                             "\n-editProf: edit name, -editCateg: edit the category name and description, -editRating: edit the rating of a professor" +
-                            "\n-rmProf: remove a professor, -rmCateg: remove a category, -rmRating: remove a rating from a professor");
+                            "\n-rmProf: remove a professor, -rmCateg: remove a category, -rmRating: remove a rating from a professor" +
+                            "\n");
                         break;
                     case "-add":
                         Console.WriteLine("Please enter a professor's name.");
                         prof_name = Console.ReadLine();
                         _prof = new Professor(prof_name);
+                        File_Manager.addProfessor(_prof);
 
                         Console.WriteLine("Please enter a category.");
                         string cat_name = Console.ReadLine();
+                        
 
                         Console.WriteLine("Please enter the category's description.");
                         cat_desc = Console.ReadLine();
                         _category = new Category(cat_name, cat_desc);
+                        File_Manager.addCategory(_category);    
 
                         Console.WriteLine("Please enter a rating for the professor.");
                         string prof_rating = Console.ReadLine();
                         Ratings _rating = new Ratings(_prof.getId(), _category.getCategoryId(), Int32.Parse(prof_rating));
+                        File_Manager.addRating(_rating);
                         break;
                     case "-addProf":
                         Console.WriteLine("Please enter a professor's name.");
@@ -70,13 +75,10 @@ namespace RateMyProfessor
                         _category = new Category(cat_name, cat_desc);
                         break;
                     case "-addRating":
-                        Console.WriteLine("Please enter the GUID of the professor to add your rating to.");
-                        string prof_guid = Console.ReadLine();
-                        //TODO: does nothing atm
-
-                        Console.WriteLine("Please enter a rating for the professor.");
+                        Console.WriteLine("Please enter the rating to add.");
                         prof_rating = Console.ReadLine();
                         _rating = new Ratings(_prof.getId(), _category.getCategoryId(), Int32.Parse(prof_rating));
+                        File_Manager.addRating(_rating);
                         break;
                     case "-rmProf":
                         Console.WriteLine("Please enter the Guid of the professor to remove");
@@ -129,10 +131,11 @@ namespace RateMyProfessor
                         File_Manager.deleteRating(rat);
                         break;
                     case "-viewProf":
+                        Console.WriteLine("Displaying the current list of professors.");
                         List<Professor> ps = File_Manager.getProfessors();
                         foreach(Professor p in ps)
                         {
-                            Console.WriteLine(p.name + " " + p.id);
+                            Console.WriteLine(p.name + " " + p.id+" 1");
                         }
                         break;
                     case "-viewCateg":
