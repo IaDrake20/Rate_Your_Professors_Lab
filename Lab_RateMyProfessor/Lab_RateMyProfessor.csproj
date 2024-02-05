@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="bin\debug\net8.0\categories.json" />
     <Content Include="obj\Debug\net8.0\categories.json" />
     <Content Include="obj\Debug\net8.0\professors.json" />
     <Content Include="obj\Debug\net8.0\ratings.json" />
@@ -27,7 +28,6 @@
   </ItemGroup>	
 	
   <ItemGroup>
-    <None Include="bin\Debug\net8.0\categories.json" />
     <None Include="bin\Debug\net8.0\professors.json" />
     <None Include="bin\Debug\net8.0\ratings.json" />
   </ItemGroup>

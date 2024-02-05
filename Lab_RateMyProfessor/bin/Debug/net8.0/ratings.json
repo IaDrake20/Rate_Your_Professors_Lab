@@ -1,0 +1,14 @@
+[
+  {
+    "ratingId": "ef8a97fd-bab7-41b4-8239-88dd62cb7558",
+    "professorId": "823091b9-471d-4601-b2df-72ac76eaf922",
+    "categoryId": "14195c5e-d6cc-407d-bbca-19151f48c26f",
+    "ratingValue": 7
+  },
+  {
+    "ratingId": "29a866f0-007b-44b7-bc8b-2f399210dc22",
+    "professorId": "3d3a5d2b-c470-4d60-8a70-f70dca9220d7",
+    "categoryId": "147ed67c-5a81-46e7-9cf3-1e94b27b860b",
+    "ratingValue": 10
+  }
+]
