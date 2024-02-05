@@ -27,7 +27,7 @@
   </ItemGroup>	
 	
   <ItemGroup>
-    <None Include="bin\Debug\net8.0\professors.json" />
+    <Folder Include="bin\Debug\net8.0\" />
   </ItemGroup>
 
 </Project>

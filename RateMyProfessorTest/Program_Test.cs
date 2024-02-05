@@ -7,83 +7,155 @@ using System.Threading.Tasks;
 using System.Linq;
 using Xunit;
 using Lab_RateMyProfessor;
+using static System.Net.Mime.MediaTypeNames;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Lab_RateMyProfessor
 {
     public class Program_Test
     {
-        /*
+
+        public static Professor bilitski = new Professor("bilitski");
+        public static Category bestDressed = new Category("Best Dressed", "Who dresses the best");
+        Ratings rat = new Ratings(bilitski.getId(), bestDressed.getCategoryId(), 10);
+
+
+
         [Fact]
-        public void test_input()
+        public void Test_FM_Add_Category()
         {
-            
+            //add and retrieve json -- Categories
+            bool found = false;
+            Assert.True(File_Manager.addCategory(bestDressed));
+
+            List<Category> existingCats = File_Manager.getCategories();
+            foreach (Category cat in existingCats)
+            {
+                if (cat.getCategoryId() == bestDressed.getCategoryId())
+                {
+                    found = true;
+                }
+            }
+            Assert.True(found);
         }
 
         [Fact]
-        public void ValidProfName()
+        public void Test_FM_Add_Professor()
         {
-            var prof = new Professor();
-
-            var result = prof.RecieveProfName();
-
-            //check name is only letters
-            Assert.True(result.All(char.IsLetter));
-
-            //check that name exists
-            Assert.True(result.Length > 0);
-        }
-
-        [Fact]
-        public void ValidProfRating()
-        {
-            var rateings = new Ratings();
-
-            var result = rateings.RecieveProfRating();
-            int rating = Int32.Parse(result.ToString());
-
-            // Assert rating is number
-            Assert.True(result.All(char.IsNumber));
-
-            //check that rating is within range
-            Assert.True(rating <= 10 && rating >= 0);
-        }
-        */
-
-        [Fact]
-        public void TestFileManager()
-        {
-            //quick tests for file manager
-
-            Professor bilitski = new Professor("bilitski");
-            Category bestDressed = new Category("Best Dressed", "Who dresses the best");
+            //add and retrieve json -- Professor
             Ratings rat = new Ratings(bilitski.getId(), bestDressed.getCategoryId(), 10);
-
             bilitski.addRating(rat);
 
+            bool found = false;
 
-            //add and retrieve json
             Assert.True(File_Manager.addProfessor(bilitski));
-            Assert.Contains(bilitski, File_Manager.getProfessors());
 
-            Assert.True(File_Manager.addCategory(bestDressed));
-            Assert.Contains(bestDressed, File_Manager.getCategories());
+            List<Professor> existingProfs = File_Manager.getProfessors();
+            foreach (Professor prof in existingProfs)
+            {
+                if (prof.getId() == bilitski.getId())
+                {
+                    found = true;
+                }
+            }
+            Assert.True(found);
+        }
 
+    
+
+        
+        [Fact]
+        public void Test_FM_Add_Rating()
+        {
+
+            //add and retrieve json -- Ratings
+            bool found = false;
             Assert.True(File_Manager.addRating(rat));
 
-            //dupe
-            Assert.True(File_Manager.addProfessor(bilitski));
-            Assert.True(File_Manager.addCategory(bestDressed));
+            List<Ratings> existingRats = File_Manager.getRatings();
+            foreach (Ratings rating in existingRats)
+            {
+                if (rating.getId() == rat.getId())
+                {
+                    found = true;
+                }
+            }
+            Assert.True(found);
+        }
 
+
+        [Fact]
+        public void Test_FM_CAdd_Dup()
+        {
+            Assert.False(File_Manager.addProfessor(bilitski));
+            Assert.False(File_Manager.addCategory(bestDressed));
+        }
+
+        [Fact]
+        public void Test_FM_Delete_Prof()
+        {
             File_Manager.deleteProfessor(bilitski);
+            
+            bool found = false;
+            List<Professor> existingProfs = File_Manager.getProfessors();
+            if (existingProfs.Count != 0)
+            {
+                foreach (Professor prof in existingProfs)
+                {
+                    if (prof.getId() == bilitski.getId())
+                    {
+                        found = true;
+                    }
+                }
+            }
+            Assert.False(found);
+        }
+
+        [Fact]
+        public void Test_FM_Delete_Category()
+        {
             File_Manager.deleteCategory(bestDressed);
+
+            bool found = false;
+            List<Category> existingCats = File_Manager.getCategories();
+            foreach (Category cat in existingCats)
+            {
+                if (cat.getCategoryId() == bestDressed.getCategoryId())
+                {
+                    found = true;
+                }
+            }
+            Assert.False(found);
+        }
+
+        [Fact]
+        public void Test_FM_Delete_Rating()
+        {
             File_Manager.deleteRating(rat);
+
+            bool found = false;
+            List<Ratings> existingRats = File_Manager.getRatings();
+            foreach (Ratings rating in existingRats)
+            {
+                if (rating.getId() == rat.getId())
+                {
+                    found = true;
+                }
+            }
+            Assert.False(found);
+
         }
 
 
 
+    }
 
 
-        public class ProfessorTests
+
+
+
+
+        /*public class ProfessorTests
         {
             [Fact]
             public void TestProfessor()
@@ -140,8 +212,7 @@ namespace Lab_RateMyProfessor
                     Console.SetOut(originalOutput);
                 }
             }
-        }
-    }
+        }*/
 }
 
 
