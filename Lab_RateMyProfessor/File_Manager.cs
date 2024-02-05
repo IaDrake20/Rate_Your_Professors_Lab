@@ -142,7 +142,7 @@ namespace Lab_RateMyProfessor
 
 
 
-        public List<Category> getCategories()
+        public static List<Category> getCategories()
         {
             string path = "categories.json";
 
@@ -158,7 +158,7 @@ namespace Lab_RateMyProfessor
             return existingCategories;
         }
 
-        public List<Professor> getProfessors()
+        public static List<Professor> getProfessors()
         {
             string path = "professors.json";
 
@@ -174,7 +174,7 @@ namespace Lab_RateMyProfessor
             return existingProfessors;
         }
 
-        public List<Ratings> getratings()
+        public static List<Ratings> getRatings()
         {
             string path = "ratings.json";
 
