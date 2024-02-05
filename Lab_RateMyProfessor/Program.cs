@@ -42,29 +42,32 @@ namespace RateMyProfessor
                         Console.WriteLine("Please enter a professor's name.");
                         prof_name = Console.ReadLine();
                         _prof = new Professor(prof_name);
-                        
+                        File_Manager.addProfessor(_prof);
                         Console.WriteLine("Please enter a category.");
                         string cat_name = Console.ReadLine();
-
+                        
                         Console.WriteLine("Please enter the category's description.");
-                        prof_name = Console.ReadLine();
+                       cat_desc = Console.ReadLine();
                         Category _category = new Category(cat_name, cat_desc);
-
+                        File_Manager.addCategory(_category);
                         Console.WriteLine("Please enter a rating for the professor.");
                         string prof_rating = Console.ReadLine();
                         Ratings _rating = new Ratings(_prof.getId(), _category.getCategoryId(), Int32.Parse(prof_rating));
+                        File_Manager.addRating(_rating);
+                        _prof.addRating(_rating);
                         break;
                     case "-addProf":
                         Console.WriteLine("Please enter a professor's name.");
                         prof_name = Console.ReadLine();
                         _prof = new Professor(prof_name);
+                        File_Manager.addProfessor(_prof);
                         break;
                     case "-addCateg":
                         Console.WriteLine("Please enter a category.");
                         cat_name = Console.ReadLine();
 
                         Console.WriteLine("Please enter the category's description.");
-                        prof_name = Console.ReadLine();
+                        cat_desc = Console.ReadLine();
                         _category = new Category(cat_name, cat_desc);
 
                         File_Manager.addCategory(_category);
@@ -170,7 +173,7 @@ namespace RateMyProfessor
                         break;
                     case "-editCateg":
                         Category newcat = new Category();
-                        Console.WriteLine("Please enter the category to add the Rating to.");
+                        Console.WriteLine("Please enter the category ID.");
                         _guid = Console.ReadLine();
                         List<Category> catee = File_Manager.getCategories();
                         foreach (Category c in catee)
@@ -197,7 +200,7 @@ namespace RateMyProfessor
                         }
                         break;
                     case "-editRating":
-                    
+
                         Console.WriteLine("Please enter the Guid of the professor to change the Rating for");
                         string profGuid = Console.ReadLine();
 
@@ -225,16 +228,14 @@ namespace RateMyProfessor
                                     string newRating = Console.ReadLine();
 
                                     int newRatingValue;
-                                    int.TryParse(newRating, out newRatingValue);
-                                    while ( newRatingValue < 1 || newRatingValue > 10)
+                                    while (!int.TryParse(newRating, out newRatingValue) || newRatingValue < 1 || newRatingValue > 10)
                                     {
                                         Console.WriteLine("ERROR: Invalid rating. Please enter a number between 1 and 10.");
                                         newRating = Console.ReadLine();
-                                        int.TryParse(newRating, out newRatingValue);
                                     }
+
                                     ratingToEdit.setRatingValue(newRatingValue);
                                     File_Manager.addRating(ratingToEdit);
-
                                 }
                                 else
                                 {
