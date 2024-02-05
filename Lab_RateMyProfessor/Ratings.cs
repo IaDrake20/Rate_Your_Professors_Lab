@@ -32,17 +32,34 @@ namespace RateMyProfessor
 
 		}
 
+		public Guid getId()
+		{
+			return ratingId;
+		}
+
+		public Guid getProfessorId()
+		{
+			return professorId;
+		}
+
+		public int getRatingValue()
+		{
+
+			return ratingValue;
+		}
+
+		public void setRatingValue( int value )
+		{
+			ratingValue = value;
+		}
+
         public string RecieveProfRating()
         {
             Console.WriteLine("Please enter your rating of the professor: ");
             string r_input = Console.ReadLine();
             return r_input;
         }
-
-		public Guid getId()
-		{
-			return ratingId;
-		}
     }
+
 }
 
