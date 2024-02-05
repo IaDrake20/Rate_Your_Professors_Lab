@@ -113,7 +113,7 @@ namespace RateMyProfessor
 
                                 foreach (Category c in cate)
                                 {
-                                    Console.WriteLine(c.categoryId.ToString());
+                                    
 
                                     if (c.categoryId.ToString().Equals(catGuid))
                                     {
@@ -203,27 +203,20 @@ namespace RateMyProfessor
                         }
                         break;
                     case "-editRating":
+                        Professor prpr = new Professor();
+                        Console.WriteLine("Please enter the guid of the professor for the rating you wish to change.");
+                        string profff = Console.ReadLine();
+                        Console.WriteLine("Please enter the guid of the rating to change.");
+                        string ratingGuid = Console.ReadLine();
+                        List<Professor> _professors44 = File_Manager.getProfessors();
 
-                        Console.WriteLine("Please enter the Guid of the professor to change the Rating for");
-                        string profGuide = Console.ReadLine();
-
-                        List<Professor> _professors22 = File_Manager.getProfessors();
-                        Professor prof22 = _professors22.FirstOrDefault(p => p.id.ToString().Equals(profGuide));
-
-                        if (prof22 != null)
+                        foreach (Professor p in _professors44)
                         {
-                            Console.WriteLine("Please enter the category to change the Rating for.");
-                            string catGuide = Console.ReadLine();
-
-                            List<Category> cate22 = File_Manager.getCategories();
-                            Category cat22 = cate22.FirstOrDefault(c => c.categoryId.ToString().Equals(catGuide));
-
-                            if (cat22 != null)
+                            Console.WriteLine($"Current Professor GUID: {p.id}");
+                            if (p.id.ToString().Equals(profff))
                             {
-                                Console.WriteLine("Please enter the guid of the rating to change.");
-                                string ratingGuid = Console.ReadLine();
-
-                                Ratings ratingToEdit = prof22.ratings.FirstOrDefault(r => r.ratingId.ToString().Equals(ratingGuid));
+                                prpr = p;
+                                Ratings ratingToEdit = prpr.ratings.FirstOrDefault(r => r.ratingId.ToString().Equals(ratingGuid));
 
                                 if (ratingToEdit != null)
                                 {
@@ -244,17 +237,11 @@ namespace RateMyProfessor
                                 {
                                     Console.WriteLine("ERROR: Rating not found. Check your Guid.");
                                 }
-                            }
-                            else
-                            {
-                                Console.WriteLine("ERROR: Category not found. Check your Guid.");
+                                break;
                             }
                         }
-                        else
-                        {
-                            Console.WriteLine("ERROR: Professor not found. Check your Guid.");
-                        }
-                        break;
+
+                        break; 
 
                     case "-rmProf":
                         Console.WriteLine("Please enter the Guid of the professor to remove");
