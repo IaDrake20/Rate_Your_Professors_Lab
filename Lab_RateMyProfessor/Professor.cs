@@ -43,7 +43,10 @@ namespace RateMyProfessor
         {
             ratings.Add(rat);
         }
-
+        public List<Ratings> getRat()
+        {
+            return ratings;
+        }
         public void setProfName(String newname)
         {
             name = newname;
