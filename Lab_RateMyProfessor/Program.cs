@@ -28,7 +28,8 @@ namespace RateMyProfessor
                 Console.WriteLine("M: M for menu to see options, E: Exit, " +
                             "\n-add: start adding a professor to be rated within a category, -addProf: add professor only, -addCateg: add category only, -addRating: add Rating to a professor" +
                             "\n-editProf: edit name, -editCateg: edit the category name and description, -editRating: edit the rating of a professor" +
-                            "\n-rmProf: remove a professor, -rmCateg: remove a category, -rmRating: remove a rating from a professor");
+                            "\n-rmProf: remove a professor, -rmCateg: remove a category, -rmRating: remove a rating from a professor" +
+                            "\n-viewProf: view professors and their guids, -viewCateg: view categories and their guids, -viewRatings: view ratings and their guids");
                 response = Console.ReadLine();
 
                 switch (response)
@@ -108,6 +109,44 @@ namespace RateMyProfessor
                             {
                                 cat = c;
                             }
+                        }
+                        File_Manager.deleteCategory(cat);
+                        break;
+                    case "-rmRating":
+                        Console.WriteLine("Please enter the Guid of the rating to remove.");
+                        _guid = new Guid(Console.ReadLine());
+
+                        Ratings rat = new Ratings();
+
+                        List<Ratings> _ratings = File_Manager.getRatings();
+                        foreach(Ratings r in _ratings)
+                        {
+                            if(r.ratingId == _guid)
+                            {
+                                rat = r;
+                            }
+                        }
+                        File_Manager.deleteRating(rat);
+                        break;
+                    case "-viewProf":
+                        List<Professor> ps = File_Manager.getProfessors();
+                        foreach(Professor p in ps)
+                        {
+                            Console.WriteLine(p.name + " " + p.id);
+                        }
+                        break;
+                    case "-viewCateg":
+                        List<Category> cs = File_Manager.getCategories();
+                        foreach(Category c in cs)
+                        {
+                            Console.WriteLine(c.categoryName + " " + c.categoryId);
+                        }
+                        break;
+                    case "-viewRatings":
+                        List<Ratings> rs = File_Manager.getRatings();
+                        foreach(Ratings r in rs)
+                        {
+                            Console.WriteLine(r.ratingId);
                         }
                         break;
                     case "E":

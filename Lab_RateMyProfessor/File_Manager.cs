@@ -314,11 +314,10 @@ namespace Lab_RateMyProfessor
         //IAN: we don't care if there are duplicate ratings
         private static bool AssertExistance(string content, char type)
         {
-            File_Manager _fm = new File_Manager();
             switch (type)
             {
                 case 'c':
-                    List<Category> c_list = _fm.getCategories();
+                    List<Category> c_list = File_Manager.getCategories();
 
                     foreach (Category _category in c_list)
                     {
@@ -330,7 +329,7 @@ namespace Lab_RateMyProfessor
                     }
                     break;
                 case 'p':
-                    List<Professor> p_list = _fm.getProfessors();
+                    List<Professor> p_list = File_Manager.getProfessors();
 
                     foreach (Professor _prof in p_list)
                     {
