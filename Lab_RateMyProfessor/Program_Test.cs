@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Xunit;
 
+
 namespace Lab_RateMyProfessor
 {
     public class Program_Test
@@ -71,6 +72,56 @@ namespace Lab_RateMyProfessor
             File_Manager.deleteProfessor(bilitski);
             File_Manager.deleteCategory(bestDressed);
             File_Manager.deleteRating(rat);
+
+        }
+        [Fact]
+        public void TestProfessor()
+        {
+            //Tests for getters and setters in Professor
+            Professor professor = new Professor("John Doe");
+            Guid id = professor.getId();
+            Category category = new Category("Best Dressed", "For the best of dress");
+            Assert.NotEqual(Guid.Empty, id);
+
+            var fakeConsoleInput = "James Bilitski"; // Replace with good input
+            using (var consoleInput = new ConsoleInput(fakeConsoleInput))
+            {
+                string input = professor.RecieveProfName();
+                Assert.Equal(fakeConsoleInput, input);
+            }
+
+            Ratings rating = new Ratings();
+
+            professor.addRating(rating);
+
+            Assert.Contains(rating, professor.ratings);
+
+            professor.setProfName("New Name");
+
+            Assert.Equal("New Name", professor.name);
+
+            professor.deleteProfRating(rating);
+
+            Assert.DoesNotContain(rating, professor.ratings);
+        }
+
+        private class ConsoleInput : IDisposable
+        {
+            private readonly System.IO.StringReader stringReader;
+            private readonly System.IO.TextReader originalInput;
+
+            public ConsoleInput(string input)
+            {
+                stringReader = new System.IO.StringReader(input);
+                originalInput = Console.In;
+                Console.SetIn(stringReader);
+            }
+
+            public void Dispose()
+            {
+                stringReader.Dispose();
+                Console.SetIn(originalInput);
+            }
         }
     }
 }
