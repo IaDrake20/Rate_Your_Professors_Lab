@@ -142,9 +142,9 @@ namespace Lab_RateMyProfessor
         [Fact]
         public void Test_Get_Categories()
         {
-            Category cat1 = new Category("hi", "ji");
-            Category cat2 = new Category("f", "ji");
-            Category cat3 = new Category("sd", "ji");
+            Category cat1 = new Category("funniest", "who make you laugh");
+            Category cat2 = new Category("loudest", "who yells");
+            Category cat3 = new Category("hardest", "hardest class");
             File_Manager.addCategory(cat1);
             File_Manager.addCategory(cat2);
             File_Manager.addCategory(cat3);
@@ -152,6 +152,41 @@ namespace Lab_RateMyProfessor
             List<Category> categories = File_Manager.getCategories();
             
             Assert.True(categories.Count == 3);
+        }
+
+        [Fact]
+        public void Test_FM_Get_Profs() 
+        {
+            Professor prof1 = new Professor("Jim");
+            Professor prof2 = new Professor("Bill");
+            Professor prof3 = new Professor("John");
+
+            File_Manager.addProfessor(prof1);
+            File_Manager.addProfessor(prof2);
+            File_Manager.addProfessor(prof3);
+
+            List<Professor> profs = File_Manager.getProfessors();
+
+            Assert.True(profs.Count == 3);
+        }
+
+        [Fact]
+        public void Test_FM_Get_Ratings()
+        {
+            Professor prof = new Professor("Jim");
+            Category cat = new Category("mad", "angry");
+
+            Ratings rat1 = new Ratings(prof.getId(), cat.getCategoryId(), 10);
+            Ratings rat2 = new Ratings(prof.getId(), cat.getCategoryId(), 5);
+            Ratings rat3 = new Ratings(prof.getId(), cat.getCategoryId(), 7);
+
+            File_Manager.addRating(rat1);
+            File_Manager.addRating(rat2);
+            File_Manager.addRating(rat3);
+
+            List<Ratings> ratings = File_Manager.getRatings();
+            Assert.True(ratings.Count == 3);
+
         }
 
 
